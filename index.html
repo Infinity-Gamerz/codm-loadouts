@@ -2,7 +2,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infinity Gamerz</title><style>
+<title>Infinity Gamerz</title>
+
+<style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#0f0f0f;color:#fff;scroll-behavior:smooth}
 
@@ -24,6 +26,20 @@ nav a:hover{color:#ff0033}
 .section{padding:60px 20px;max-width:1100px;margin:auto}
 .section h3{text-align:center;margin-bottom:30px}
 
+/* 🔍 SEARCH BAR */
+#searchBar{
+  width:90%;
+  max-width:400px;
+  padding:12px;
+  margin:20px auto;
+  display:block;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:16px;
+}
+
+/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 
 .card{background:#111;padding:15px;border-radius:15px;cursor:pointer;transition:.3s}
@@ -49,8 +65,12 @@ iframe{width:100%;height:250px;border:none;border-radius:10px}
  box-shadow:0 0 20px #ff0033;
 }
 .close{cursor:pointer;color:#ff0033;font-size:22px;float:right}
-</style></head>
-<body><header>
+</style>
+
+</head>
+<body>
+
+<header>
 <h1>Infinity Gamerz 🔥</h1>
 <nav>
 <a href="#">Home</a>
@@ -58,15 +78,25 @@ iframe{width:100%;height:250px;border:none;border-radius:10px}
 <a href="#videos">Videos</a>
 <a href="#about">About</a>
 </nav>
-</header><section class="hero">
+</header>
+
+<section class="hero">
 <h2>Best COD Mobile Loadouts 🔫</h2>
 <p>Sniper builds • No recoil setups • Aggressive gameplay</p>
 <a href="#loadouts" class="btn">View Loadouts</a>
 <a href="https://youtube.com/@infinitygaming1-1?si=yo_8wuwYHrPDUO73" target="_blank" class="btn">Subscribe</a>
-</section><section id="loadouts" class="section">
+</section>
+
+<section id="loadouts" class="section">
 <h3>🔥 Featured Loadouts</h3>
+
+<!-- 🔍 SEARCH BAR ADDED -->
+<input type="text" id="searchBar" placeholder="Search loadouts...">
+
 <div id="loadouts-container" class="grid"></div>
-</section><section class="section">
+</section>
+
+<section class="section">
 <h3>🎯 Categories (Filter)</h3>
 <div class="category-buttons">
 <button onclick="filter('all')">All</button>
@@ -74,33 +104,38 @@ iframe{width:100%;height:250px;border:none;border-radius:10px}
 <button onclick="filter('ar')">AR</button>
 <button onclick="filter('smg')">SMG</button>
 </div>
-</section><section id="videos" class="section">
+</section>
+
+<section id="videos" class="section">
 <h3>🎥 Latest Videos</h3>
 <div class="grid">
-<iframe 
-  width="100%" 
-  height="315" 
-  src="https://www.youtube.com/embed/0IyXgkjtXpY" 
-  frameborder="0" 
-  allowfullscreen>
-</iframe>
+<iframe width="100%" height="315"
+src="https://www.youtube.com/embed/0IyXgkjtXpY"
+frameborder="0" allowfullscreen></iframe>
 </div>
-</section><section id="about" class="section about">
+</section>
+
+<section id="about" class="section about">
 <h3>👤 About Me</h3>
-<p>Hey, I’m the creator of Infinity Gamerz. I post insane COD Mobile loadouts and gameplay.Please subscribe my channel and help me grow.</p>
-</section><div class="footer">
+<p>Hey, I’m the creator of Infinity Gamerz. I post insane COD Mobile loadouts and gameplay. Please subscribe my channel and help me grow.</p>
+</section>
+
+<div class="footer">
 <p>© 2026 Infinity Gamerz 👑</p>
-</div><!-- MODAL --><div id="modal" class="modal">
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeModal()">✖</span>
-
 <img id="modalImg" style="width:100%;border-radius:10px;margin-bottom:15px;">
-
 <h2 id="gunName"></h2>
 <p id="gunDesc"></p>
 <p id="gunAttach"></p>
 </div>
-</div><script>
+</div>
+
+<script>
 function openModal(name,desc,attach,img){
  document.getElementById('modal').style.display='flex';
  document.getElementById('gunName').innerText=name;
@@ -131,33 +166,71 @@ const loadouts = [
     name: "Arctic .50 🔥",
     desc: "Fast ADS one-shot build",
     attach: "Assassin Short | OWC Skeleton Stock | Fast Switch | MIP Stopping Power Reload | Stippled Grip Tape",
-    img: "images/arctic.50.jpg"
+    img: "./images/arctic.50.jpg"
   },
- {
-    name: " Lw3-Tundra ",
-    desc: "Fastesf ADS build",
-    attach: " 28.2 Tiger Team | Bandit Steady Stock | Serpent Wrap | 7 RND Reload | Fast Switch ",
-    img: "images/lw3-tundra.jpg"
+  {
+    name: "Lw3-Tundra",
+    desc: "Fastest ADS build",
+    attach: "28.2 Tiger Team | Bandit Steady Stock | Serpent Wrap | 7 RND Reload | Fast Switch",
+    img: "./images/lw3-tundra.jpg"
+  },
+  {
+    name: "Koshka",
+    desc: "Godlike build",
+    attach: "MIP Light Barrel (Short) | OWC Laser Tactical | Mobility Stock | Stippled Grip Tape | Fast Switch",
+    img: "./images/koshka.jpg"
+  },
+  {
+    name: "3-Line Rifle",
+    desc: "One Shot kill (for beginners)",
+    attach: ".30-06 20 Round Mag | SMLE Pistol Grip | 270MM VOZ CARBINE | EMPRESS MARKSMAN | Fast Switch",
+    img: "./images/3-line.jpg"
   },
 ];
 
-// 🔥 AUTO GENERATE CARDS
 const container = document.getElementById("loadouts-container");
 
+// 🔥 STORE CARDS FOR SEARCH
+let allCards = [];
+
+// GENERATE CARDS
 loadouts.forEach(loadout => {
-  container.innerHTML += `
-    <div class="card" onclick="openModal('${loadout.name}','${loadout.desc}','${loadout.attach}','${loadout.img}')">
-      <img src="${loadout.img}">
-      <h4>${loadout.name}</h4>
-      <p>Tap to view build</p>
-    </div>
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = `
+    <img src="${loadout.img}">
+    <h4>${loadout.name}</h4>
+    <p>Tap to view build</p>
   `;
+
+  card.onclick = () => openModal(loadout.name,loadout.desc,loadout.attach,loadout.img);
+
+  container.appendChild(card);
+  allCards.push(card);
 });
 
-// Filter system (basic demo)
+// 🔍 SEARCH FUNCTION
+const searchBar = document.getElementById("searchBar");
+
+searchBar.addEventListener("input", () => {
+  const value = searchBar.value.toLowerCase();
+
+  allCards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+
+    if(text.includes(value)){
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+
+// Filter placeholder
 function filter(type){
  alert('Filter system can be expanded later 😎');
 }
+</script>
 
-  </script></body>
+</body>
 </html>
