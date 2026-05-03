@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinity Gamerz</title><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0f0f0f;color:#fff;scroll-behavior:smooth}
+
+header{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:15px 30px;background:#000;position:sticky;top:0;z-index:1000;
+ border-bottom:1px solid #222;
+}
+header h1{color:#ff0033}
+nav a{color:#fff;margin-left:20px;text-decoration:none;font-weight:bold}
+nav a:hover{color:#ff0033}
+
+.hero{text-align:center;padding:100px 20px;background:linear-gradient(to right,#000,#111)}
+.hero h2{font-size:48px}
+.hero p{color:#aaa;margin:15px 0}
+
+.btn{display:inline-block;margin:10px;padding:12px 25px;background:#ff0033;color:#fff;border-radius:10px;text-decoration:none;font-weight:bold}
+
+.section{padding:60px 20px;max-width:1100px;margin:auto}
+.section h3{text-align:center;margin-bottom:30px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+
+.card{background:#111;padding:15px;border-radius:15px;cursor:pointer;transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 15px #ff0033}
+.card img{width:100%;border-radius:10px}
+
+.category-buttons{text-align:center}
+.category-buttons button{margin:10px;padding:10px 20px;border:none;border-radius:8px;background:#222;color:#fff;cursor:pointer}
+.category-buttons button:hover{background:#ff0033}
+
+iframe{width:100%;height:250px;border:none;border-radius:10px}
+
+.about{text-align:center;color:#aaa}
+.footer{text-align:center;padding:20px;background:#000;margin-top:40px;color:#777}
+
+/* MODAL */
+.modal{
+ display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+ background:rgba(0,0,0,0.85);justify-content:center;align-items:center;
+}
+.modal-content{
+ background:#111;padding:25px;border-radius:15px;text-align:center;max-width:400px;
+ box-shadow:0 0 20px #ff0033;
+}
+.close{cursor:pointer;color:#ff0033;font-size:22px;float:right}
+</style></head>
+<body><header>
+<h1>Infinity Gamerz 🔥</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#loadouts">Loadouts</a>
+<a href="#videos">Videos</a>
+<a href="#about">About</a>
+</nav>
+</header><section class="hero">
+<h2>Best COD Mobile Loadouts 🔫</h2>
+<p>Sniper builds • No recoil setups • Aggressive gameplay</p>
+<a href="#loadouts" class="btn">View Loadouts</a>
+<a href="https://youtube.com/@infinitygaming1-1?si=yo_8wuwYHrPDUO73" target="_blank" class="btn">Subscribe</a>
+</section><section id="loadouts" class="section">
+<h3>🔥 Featured Loadouts</h3>
+<div id="loadouts-container" class="grid"></div>
+</section><section class="section">
+<h3>🎯 Categories (Filter)</h3>
+<div class="category-buttons">
+<button onclick="filter('all')">All</button>
+<button onclick="filter('sniper')">Snipers</button>
+<button onclick="filter('ar')">AR</button>
+<button onclick="filter('smg')">SMG</button>
+</div>
+</section><section id="videos" class="section">
+<h3>🎥 Latest Videos</h3>
+<div class="grid">
+<iframe 
+  width="100%" 
+  height="315" 
+  src="https://www.youtube.com/embed/0IyXgkjtXpY" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+</div>
+</section><section id="about" class="section about">
+<h3>👤 About Me</h3>
+<p>Hey, I’m the creator of Infinity Gamerz. I post insane COD Mobile loadouts and gameplay.Please subscribe my channel and help me grow.</p>
+</section><div class="footer">
+<p>© 2026 Infinity Gamerz 👑</p>
+</div><!-- MODAL --><div id="modal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✖</span>
+
+<img id="modalImg" style="width:100%;border-radius:10px;margin-bottom:15px;">
+
+<h2 id="gunName"></h2>
+<p id="gunDesc"></p>
+<p id="gunAttach"></p>
+</div>
+</div><script>
+function openModal(name,desc,attach,img){
+ document.getElementById('modal').style.display='flex';
+ document.getElementById('gunName').innerText=name;
+ document.getElementById('gunDesc').innerText=desc;
+ document.getElementById('gunAttach').innerText='Attachments: '+attach;
+ document.getElementById('modalImg').src = img;
+}
+
+function closeModal(){
+ document.getElementById('modal').style.display='none';
+}
+
+// 🔥 LOADOUT SYSTEM
+const loadouts = [
+  {
+    name: "DL Q33 👑",
+    desc: "Fast ADS one-shot build",
+    attach: "MIP Light | OWC Laser | Fast switch | Extended Mag A | YKM Combat Stock",
+    img: "images/dl-q33.jpg"
+  },
+  {
+    name: "LOCUS 💯",
+    desc: "Fast ADS one-shot build",
+    attach: "OWC Laser | YKM Lightweight Short | OWC Skeleton Stock | OWC Stopping Power Reload | Stippled Grip Tape",
+    img: "images/locus.jpg"
+  },
+  {
+    name: "Arctic .50 🔥",
+    desc: "Fast ADS one-shot build",
+    attach: "Assassin Short | OWC Skeleton Stock | Fast Switch | MIP Stopping Power Reload | Stippled Grip Tape",
+    img: "images/arctic.50.jpg"
+  }
+ {
+    name: " Lw3-Tundra ",
+    desc: "Fastesf ADS build",
+    attach: " 28.2 Tiger Team | Bandit Steady Stock | Serpent Wrap | 7 RND Reload | Fast Switch ",
+    img: "images/lw3-tundra.jpg"
+  }
+];
+
+// 🔥 AUTO GENERATE CARDS
+const container = document.getElementById("loadouts-container");
+
+loadouts.forEach(loadout => {
+  container.innerHTML += `
+    <div class="card" onclick="openModal('${loadout.name}','${loadout.desc}','${loadout.attach}','${loadout.img}')">
+      <img src="${loadout.img}">
+      <h4>${loadout.name}</h4>
+      <p>Tap to view build</p>
+    </div>
+  `;
+});
+
+// Filter system (basic demo)
+function filter(type){
+ alert('Filter system can be expanded later 😎');
+}
+</script>
+  
+</script></body>
+</html>
