@@ -122,3 +122,28 @@ button {
   padding: 5px;
   border-radius: 5px;
 }
+#gameBox{
+  width:100%;
+  max-width:500px;
+  height:300px;
+  margin:20px auto;
+  background:#000;
+  border:2px solid #ff0033;
+  border-radius:15px;
+  position:relative;
+  overflow:hidden;
+}
+<p style="text-align:center;margin-top:10px;color:#aaa;">
+  🎯 Hit the target as fast as possible. One miss = Game Over!
+</p>
+
+#target{
+  width:40px;
+  height:40px;
+  background:red;
+  border-radius:50%;
+  position:absolute;
+  display:none;
+  cursor:pointer;
+  box-shadow:0 0 10px #ff0033;
+}

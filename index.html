@@ -67,6 +67,28 @@ iframe{width:100%;height:180px;border:none;border-radius:10px}
  box-shadow:0 0 20px #ff0033;
 }
 .close{cursor:pointer;color:#ff0033;font-size:22px;float:right}
+#gameBox{
+  width:100%;
+  max-width:500px;
+  height:300px;
+  margin:20px auto;
+  background:#000;
+  border:2px solid #ff0033;
+  border-radius:15px;
+  position:relative;
+  overflow:hidden;
+}
+
+#target{
+  width:40px;
+  height:40px;
+  background:red;
+  border-radius:50%;
+  position:absolute;
+  display:none;
+  cursor:pointer;
+  box-shadow:0 0 10px #ff0033;
+}
 </style>
 
 </head>
@@ -121,7 +143,29 @@ frameborder="0" allowfullscreen></iframe>
 <h3>👤 About Me</h3>
 <p>Hey, I’m the creator of Infinity Gamerz. I post insane COD Mobile loadouts and gameplay. Please subscribe my channel and help me grow.</p>
 </section>
+<section class="section">
+  <h3>🎯 Aim Trainer Mini Game</h3>
 
+  <div id="gameBox">
+    <div id="target"></div>
+  </div>
+
+  <p style="text-align:center;margin-top:10px;">
+    Score: <span id="score">0</span>
+  </p>
+
+  <div style="text-align:center;">
+    <button class="btn" onclick="startGame()">Start Game</button>
+  </div>
+ <p style="text-align:center;margin-top:10px;color:#aaa;">
+🎯 Hit the target as fast as possible. One miss = Game Over!
+</p>
+  <div id="gameOverBox" style="display:none;text-align:center;margin-top:20px;">
+  <h2>💀 Game Over!</h2>
+  <p>Your Score: <span id="finalScore">0</span></p>
+  <button class="btn" onclick="startGame()">Play Again</button>
+</div>
+</section>
 <div class="footer">
 <p>© 2026 Infinity Gamerz 👑</p>
 </div>
@@ -204,31 +248,36 @@ let allCards = [];
 // GENERATE CARDS
 loadouts.forEach(loadout => {
   const card = document.createElement("div");
-  card.classList.add("card");
-  card.innerHTML = `
-    <img src="${loadout.img}">
-    <h4>${loadout.name}</h4>
-    <p>Tap to view build</p>
-<div class="interaction-box">
-  <div class="rating">
-    ⭐ Rate:
-    <span onclick="rate(this,1)">★</span>
-    <span onclick="rate(this,2)">★</span>
-    <span onclick="rate(this,3)">★</span>
-    <span onclick="rate(this,4)">★</span>
-    <span onclick="rate(this,5)">★</span>
-  </div>
-<div class="comments">
-  <input type="text" class="comment-input" onclick="event.stopPropagation()" placeholder="Drop a comment...">
-  <button onclick="addComment(this, event)">Post</button>
-  <ul class="comment-list" onclick="event.stopPropagation()"></ul>
-</div>
+  card.classList.add("card");card.innerHTML = `
+  <img src="${loadout.img}">
+  <h4>${loadout.name}</h4>
+  <p>Tap to view build</p>
 
- <div class="like-section">
-  <button onclick="likeLoadout(event, this)">👍 Like</button>
-  <span class="like-count">0</span>
- </div>
+  <div class="interaction-box">
+
+    <div class="rating">
+      ⭐ Rate:
+      <span onclick="rate(this,1)">★</span>
+      <span onclick="rate(this,2)">★</span>
+      <span onclick="rate(this,3)">★</span>
+      <span onclick="rate(this,4)">★</span>
+      <span onclick="rate(this,5)">★</span>
+    </div>
+
+    <div class="comments">
+      <input type="text" class="comment-input" onclick="event.stopPropagation()" placeholder="Drop a comment...">
+      <button onclick="addComment(this, event)">Post</button>
+      <ul class="comment-list" onclick="event.stopPropagation()"></ul>
+    </div>
+
+    <div class="like-section">
+      <button onclick="likeLoadout(event, this)">👍 Like</button>
+      <span class="like-count">0</span>
+    </div>
+
+  </div>
 `;
+
 card.onclick = (e) => {
   // 🚫 ignore clicks from interaction area
   if (e.target.closest(".interaction-box") || e.target.tagName === "BUTTON") {
@@ -295,24 +344,117 @@ function rate(element, value) {
     stars[i].classList.add("active");
   }
   localStorage.setItem("rating", value);
-}
-function addComment(button, event) {
+}function addComment(button, event) {
   event.stopPropagation();
 
-  // ✅ find the correct interaction box
-  let box = button.closest(".interaction-box");
-
-  let input = box.querySelector(".comment-input");
-  let list = box.querySelector(".comment-list");
+  let card = button.closest(".card");
+  let input = card.querySelector(".comment-input");
+  let list = card.querySelector(".comment-list");
 
   if (!input.value.trim()) return;
 
+  let text = input.value;
+
+  // 🔥 create comment element
   let li = document.createElement("li");
-  li.textContent = input.value;
+  li.textContent = text;
   list.appendChild(li);
+
+  // 🔥 SAVE to localStorage
+  let id = card.querySelector("h4").innerText; // unique per gun
+  let saved = JSON.parse(localStorage.getItem("comments")) || {};
+
+  if (!saved[id]) saved[id] = [];
+  saved[id].push(text);
+
+  localStorage.setItem("comments", JSON.stringify(saved));
 
   input.value = "";
 }
+setTimeout(() => {
+  let saved = JSON.parse(localStorage.getItem("comments")) || {};
+
+  document.querySelectorAll(".card").forEach(card => {
+    let id = card.querySelector("h4").innerText;
+    let list = card.querySelector(".comment-list");
+
+    if (saved[id]) {
+      saved[id].forEach(comment => {
+        let li = document.createElement("li");
+        li.textContent = comment;
+        list.appendChild(li);
+      });
+    }
+  });
+}, 100);
+let score = 0;
+let gameInterval;
+let gameActive = false;
+
+function startGame(){
+  score = 0;
+  gameActive = true;
+
+  document.getElementById("score").innerText = score;
+  document.getElementById("gameOverBox").style.display = "none";
+
+  const target = document.getElementById("target");
+  const box = document.getElementById("gameBox");
+
+  target.style.display = "block";
+
+  // detect MISS click
+  box.onclick = function(e){
+    if (!gameActive) return;
+
+    if (e.target.id !== "target") {
+      endGame();
+    }
+  };
+
+  moveTarget();
+
+  clearInterval(gameInterval);
+gameInterval = setInterval(moveTarget, 650);
+
+  // ⏱ stop after 15 sec
+  setTimeout(() => {
+    if (gameActive) endGame();
+  }, 15000);
+}
+
+function moveTarget(){
+  const box = document.getElementById("gameBox");
+  const target = document.getElementById("target");
+
+  const x = Math.random() * (box.clientWidth - 40);
+  const y = Math.random() * (box.clientHeight - 40);
+
+  target.style.left = x + "px";
+  target.style.top = y + "px";
+}
+
+// 🎯 HIT
+document.getElementById("target").onclick = function(e){
+  e.stopPropagation();
+
+  if (!gameActive) return;
+
+  score++;
+  document.getElementById("score").innerText = score;
+};
+
+// ❌ END GAME
+function endGame(){
+  gameActive = false;
+  clearInterval(gameInterval);
+
+  document.getElementById("target").style.display = "none";
+
+  document.getElementById("finalScore").innerText = score;
+  document.getElementById("gameOverBox").style.display = "block";
+}
+
 </script>
 
 </body>
