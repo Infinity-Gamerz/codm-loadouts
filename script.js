@@ -41,6 +41,25 @@ function displayLoadouts() {
 
     container.appendChild(div);
   });
+function addComment(button, event) {
+  event.stopPropagation();
+
+  const card = button.closest(".card"); // 🔥 safer than interaction-box
+  const input = card.querySelector(".comment-input");
+  const list = card.querySelector(".comment-list");
+
+  if (!input || !list) {
+    console.log("Element not found ❌");
+    return;
+  }
+
+  if (input.value.trim() === "") return;
+
+  const li = document.createElement("li");
+  li.textContent = input.value;
+
+  list.appendChild(li);
+  input.value = "";
 }
 
 displayLoadouts();
