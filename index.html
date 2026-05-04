@@ -224,10 +224,6 @@ loadouts.forEach(loadout => {
   <ul class="comment-list" onclick="event.stopPropagation()"></ul>
 </div>
 
-    
-  </div>
-</div>
-
  <div class="like-section">
   <button onclick="likeLoadout(event, this)">👍 Like</button>
   <span class="like-count">0</span>
@@ -299,7 +295,8 @@ function rate(element, value) {
     stars[i].classList.add("active");
   }
   localStorage.setItem("rating", value);
-}function addComment(button, event) {
+}
+function addComment(button, event) {
   event.stopPropagation();
 
   // ✅ find the correct interaction box
