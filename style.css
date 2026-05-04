@@ -147,3 +147,7 @@ button {
   cursor:pointer;
   box-shadow:0 0 10px #ff0033;
 }
+.liked{
+  color:#ff0033;
+  text-shadow:0 0 10px #ff0033;
+}
