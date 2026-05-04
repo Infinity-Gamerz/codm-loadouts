@@ -1,10 +1,9 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Infinity Gamerz</title>
-
-<link rel="stylesheet" href="style.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
@@ -19,8 +18,8 @@ header h1{color:#ff0033}
 nav a{color:#fff;margin-left:20px;text-decoration:none;font-weight:bold}
 nav a:hover{color:#ff0033}
 
-.hero{text-align:center;padding:100px 20px;background:linear-gradient(to right,#000,#111)}
-.hero h2{font-size:48px}
+.hero{text-align:center;padding:80px 20px;background:linear-gradient(to right,#000,#111)}
+.hero h2{font-size:42px}
 .hero p{color:#aaa;margin:15px 0}
 
 .btn{display:inline-block;margin:10px;padding:12px 25px;background:#ff0033;color:#fff;border-radius:10px;text-decoration:none;font-weight:bold}
@@ -28,10 +27,8 @@ nav a:hover{color:#ff0033}
 .section{padding:60px 20px;max-width:1100px;margin:auto}
 .section h3{text-align:center;margin-bottom:30px}
 
-/* 🔍 SEARCH BAR */
 #searchBar{
-  width:90%;
-  max-width:400px;
+  width:90%;max-width:400px;
   padding:12px;
   margin:20px auto;
   display:block;
@@ -41,32 +38,49 @@ nav a:hover{color:#ff0033}
   font-size:16px;
 }
 
-/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 
-.card{background:#111;padding:15px;border-radius:15px;cursor:pointer;transition:.3s}
+.card{
+  background:#111;
+  padding:15px;
+  border-radius:15px;
+  cursor:pointer;
+  transition:.3s;
+}
 .card:hover{transform:translateY(-8px);box-shadow:0 0 15px #ff0033}
 .card img{width:100%;border-radius:10px}
 
 .category-buttons{text-align:center}
-.category-buttons button{margin:10px;padding:10px 20px;border:none;border-radius:8px;background:#222;color:#fff;cursor:pointer}
+.category-buttons button{
+  margin:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  background:#222;
+  color:#fff;
+  cursor:pointer;
+}
 .category-buttons button:hover{background:#ff0033}
 
-iframe{width:100%;height:180px;border:none;border-radius:10px}
-
-.about{text-align:center;color:#aaa}
 .footer{text-align:center;padding:20px;background:#000;margin-top:40px;color:#777}
 
 /* MODAL */
 .modal{
  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
- background:rgba(0,0,0,0.85);justify-content:center;align-items:center;
+ background:rgba(0,0,0,0.85);
+ justify-content:center;align-items:center;
 }
 .modal-content{
- background:#111;padding:25px;border-radius:15px;text-align:center;max-width:400px;
+ background:#111;
+ padding:25px;
+ border-radius:15px;
+ max-width:400px;
+ text-align:center;
  box-shadow:0 0 20px #ff0033;
 }
 .close{cursor:pointer;color:#ff0033;font-size:22px;float:right}
+
+/* GAME */
 #gameBox{
   width:100%;
   max-width:500px;
@@ -85,13 +99,105 @@ iframe{width:100%;height:180px;border:none;border-radius:10px}
   background:red;
   border-radius:50%;
   position:absolute;
-  target.style.display = "block";
   cursor:pointer;
   box-shadow:0 0 10px #ff0033;
 }
-</style>
+button{
+  cursor:pointer;
+  border:none;
+  padding:8px 14px;
+  margin-top:10px;
+  border-radius:10px;
+  background:linear-gradient(145deg,#111,#1c1c1c);
+  color:#fff;
+  transition:0.25s;
+  box-shadow:0 0 10px rgba(255,0,51,0.15);
+}
 
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px #ff0033;
+}
+
+.liked{
+  background:#ff0033;
+  color:#fff;
+  box-shadow:0 0 20px #ff0033;
+}
+.commentBox{
+  margin-top:10px;
+  background:rgba(255,255,255,0.05);
+  padding:10px;
+  border-radius:12px;
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.commentBox input{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  background:#111;
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.commentBox ul{
+  list-style:none;
+  margin-top:8px;
+}
+
+.commentBox li{
+  background:rgba(255,0,51,0.1);
+  padding:6px 10px;
+  margin:5px 0;
+  border-radius:8px;
+  border-left:3px solid #ff0033;
+}
+.rating{
+  margin-top:8px;
+  font-size:18px;
+  letter-spacing:2px;
+}
+
+.rating span{
+  cursor:pointer;
+  color:#444;
+  transition:0.2s;
+}
+
+.rating span:hover{
+  color:#ff0033;
+  transform:scale(1.2);
+}
+.rating, .commentBox, button{
+  position:relative;
+  z-index:2;
+}
+.card{
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(45deg,transparent,#ff0033,transparent);
+  top:-100%;
+  left:0;
+  transition:0.5s;
+}
+
+.card:hover::before{
+  top:100%;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -108,20 +214,19 @@ iframe{width:100%;height:180px;border:none;border-radius:10px}
 <h2>Best COD Mobile Loadouts 🔫</h2>
 <p>Sniper builds • No recoil setups • Aggressive gameplay</p>
 <a href="#loadouts" class="btn">View Loadouts</a>
-<a href="https://youtube.com/@infinitygaming1-1?si=yo_8wuwYHrPDUO73" target="_blank" class="btn">Subscribe</a>
+<a href="https://youtube.com/@infinitygaming1-1" target="_blank" class="btn">Subscribe</a>
 </section>
 
 <section id="loadouts" class="section">
 <h3>🔥 Featured Loadouts</h3>
 
-<!-- 🔍 SEARCH BAR ADDED -->
-<input type="text" id="searchBar" placeholder="Search loadouts...(plz enter exact spelling)">
+<input type="text" id="searchBar" placeholder="Search loadouts...">
 
 <div id="loadouts-container" class="grid"></div>
 </section>
 
 <section class="section">
-<h3>🎯 Categories (Filter)</h3>
+<h3>🎯 Categories</h3>
 <div class="category-buttons">
 <button onclick="filter('all')">All</button>
 <button onclick="filter('sniper')">Snipers</button>
@@ -130,42 +235,13 @@ iframe{width:100%;height:180px;border:none;border-radius:10px}
 </div>
 </section>
 
-<section id="videos" class="section">
-<h3>🎥 Latest Videos</h3>
-<div class="grid">
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/0IyXgkjtXpY"
-frameborder="0" allowfullscreen></iframe>
-</div>
-</section>
-
-<section id="about" class="section about">
-<h3>👤 About Me</h3>
-<p>Hey, I’m the creator of Infinity Gamerz. I post insane COD Mobile loadouts and gameplay. Please subscribe my channel and help me grow.</p>
-</section>
-<section class="section">
-  <h3>🎯 Aim Trainer Mini Game</h3>
-
-  <div id="gameBox">
-    <div id="target"></div>
-  </div>
-
-  <p style="text-align:center;margin-top:10px;">
-    Score: <span id="score">0</span>
-  </p>
-
-  <div style="text-align:center;">
-    <button class="btn" onclick="startGame()">Start Game</button>
-  </div>
- <p style="text-align:center;margin-top:10px;color:#aaa;">
-🎯 Hit the target as fast as possible. One miss = Game Over!
+<section id="about" class="section">
+<h3>👤 About</h3>
+<p style="text-align:center;color:#aaa">
+Infinity Gamerz — CODM Loadouts & Gameplay
 </p>
-  <div id="gameOverBox" style="display:none;text-align:center;margin-top:20px;">
-  <h2>💀 Game Over!</h2>
-  <p>Your Score: <span id="finalScore">0</span></p>
-  <button class="btn" onclick="startGame()">Play Again</button>
-</div>
 </section>
+
 <div class="footer">
 <p>© 2026 Infinity Gamerz 👑</p>
 </div>
@@ -174,288 +250,254 @@ frameborder="0" allowfullscreen></iframe>
 <div id="modal" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeModal()">✖</span>
-<img id="modalImg" style="width:100%;border-radius:10px;margin-bottom:15px;">
+<img id="modalImg" style="width:100%;border-radius:10px;margin-bottom:10px;">
 <h2 id="gunName"></h2>
 <p id="gunDesc"></p>
 <p id="gunAttach"></p>
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
+function getId(name){
+  return name.replace(/\s+/g,'').toLowerCase();
+}
 function openModal(name,desc,attach,img){
- document.getElementById('modal').style.display='flex';
- document.getElementById('gunName').innerText=name;
- document.getElementById('gunDesc').innerText=desc;
- document.getElementById('gunAttach').innerText='Attachments: '+attach;
- document.getElementById('modalImg').src = img;
+  document.getElementById('modal').style.display='flex';
+  document.getElementById('gunName').innerText=name;
+  document.getElementById('gunDesc').innerText=desc;
+  document.getElementById('gunAttach').innerText="Attachments: "+attach;
+  document.getElementById('modalImg').src=img;
 }
 
 function closeModal(){
- document.getElementById('modal').style.display='none';
+  document.getElementById('modal').style.display='none';
 }
 
-// 🔥 LOADOUT SYSTEM
-const loadouts = [
+function downloadSpecific(id){
+  const el=document.getElementById(id);
+  html2canvas(el).then(canvas=>{
+    const link=document.createElement("a");
+    link.download=id+".png";
+    link.href=canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+// 🔥 LOADOUT DATA
+const loadouts=[
   {
-    name: "DL Q33 👑",
-    desc: "Fast ADS one-shot build",
-    attach: "MIP Light | OWC Laser | Fast switch | Extended Mag A | YKM Combat Stock",
-    img: "./images/dl-q33.jpg"
-  },
-  {
-    name: "LOCUS 💯",
-    desc: "Fast ADS one-shot build",
-    attach: "OWC Laser | YKM Lightweight Short | OWC Skeleton Stock | OWC Stopping Power Reload | Stippled Grip Tape",
-    img: "./images/locus.jpg"
-  },
-  {
-    name: "Arctic .50 🔥",
-    desc: "Fast ADS one-shot build",
-    attach: "Assassin Short | OWC Skeleton Stock | Fast Switch | MIP Stopping Power Reload | Stippled Grip Tape",
-    img: "./images/arctic.50.jpg"
-  },
-  {
-    name: "Lw3-Tundra",
-    desc: "Fastest ADS build",
-    attach: "28.2 Tiger Team | Bandit Steady Stock | Serpent Wrap | 7 RND Reload | Fast Switch",
-    img: "./images/lw3-tundra.jpg"
-  },
-  {
-    name: "Koshka",
-    desc: "Godlike build",
-    attach: "MIP Light Barrel (Short) | OWC Laser Tactical | Mobility Stock | Stippled Grip Tape | Fast Switch",
-   img: "./images/koshka.jpg"
-  },
-  {
-    name: "3-Line Rifle",
-    desc: "One Shot kill (for beginners)",
-    attach: ".30-06 20 Round Mag | SMLE Pistol Grip | 270MM VOZ CARBINE | EMPRESS MARKSMAN | Fast Switch",
-    img: "./images/3-line.jpg"
-  },
-  {
-    name: "HDR",
-    desc: " Insta Kill",
-    attach: "4x Tactical Scope | FTAC Stalker-Scout | 7 Rnd Mag | OWC Laser - Tactical | Fast Switch",
-    img: "./images/hdr.jpg"
-  },
+ name:"DL Q33 👑",
+ desc:"Fast ADS one-shot build",
+ category:"sniper",
+ attach:"MIP Light | OWC Laser | Fast Switch | Extended Mag A | YKM Combat Stock",
+ img:"images/dl-q33.jpg"
+},
+{
+ name:"LOCUS 💯",
+ desc:"Fast ADS one-shot build",
+ category:"sniper",
+ attach:"OWC Laser | YKM Lightweight Short | OWC Skeleton Stock | OWC Stopping Power Reload | Stippled Grip Tape",
+ img:"images/locus.jpg"
+},
+{
+ name:"Arctic .50 🔥",
+ desc:"Fast ADS one-shot build",
+ category:"sniper",
+ attach:"Assassin Short | OWC Skeleton Stock | Fast Switch | MIP Stopping Power Reload | Stippled Grip Tape",
+ img:"images/arctic.50.jpg"
+},
+{
+ name:"LW3-Tundra",
+ desc:"Fastest ADS build",
+ category:"sniper",
+ attach:"28.2\" Tiger Team | Bandit Steady Stock | Serpent Wrap | 7 RND Reload | Fast Switch",
+ img:"images/lw3-tundra.jpg"
+},
+{
+ name:"Koshka",
+ desc:"Godlike build",
+ category:"sniper",
+ attach:"MIP Light Barrel | OWC Laser Tactical | Mobility Stock | Stippled Grip Tape | Fast Switch",
+ img:"images/koshka.jpg"
+},
+{
+ name:"3-Line Rifle",
+ desc:"One shot kill for beginners",
+ category:"sniper",
+ attach:".30-06 Mag | SMLE Grip | 270MM VOZ | Empress Marksman | Fast Switch",
+ img:"images/3-line.jpg"
+},
+{
+ name:"HDR",
+ desc:"Insta Kill",
+ category:"sniper",
+ attach:"4x Scope | FTAC Stalker | 7 Rnd Mag | OWC Laser Tactical | Fast Switch",
+ img:"images/hdr.jpg"
+}
 ];
 
 const container = document.getElementById("loadouts-container");
+let cards = [];
 
-// 🔥 STORE CARDS FOR SEARCH
-let allCards = [];
+// ⭐ CREATE CARDS (FIXED)
+loadouts.forEach(l => {
 
-// GENERATE CARDS
-loadouts.forEach(loadout => {
+  const id = getId(l.name)
+
+  // CARD
   const card = document.createElement("div");
-  card.classList.add("card");card.innerHTML = `
-  <img src="${loadout.img}">
-  <h4>${loadout.name}</h4>
-  <p>Tap to view build</p>
+  card.className = "card";
 
-  <div class="interaction-box">
+  card.innerHTML = `<img src="${l.img}">
+<h4>${l.name}</h4>
+<p>Tap to view</p>
 
-    <div class="rating">
-      ⭐ Rate:
-      <span onclick="rate(this,1)">★</span>
-      <span onclick="rate(this,2)">★</span>
-      <span onclick="rate(this,3)">★</span>
-      <span onclick="rate(this,4)">★</span>
-      <span onclick="rate(this,5)">★</span>
-    </div>
+<!-- ⭐ RATING -->
+<div class="rating" onclick="event.stopPropagation()">
+  <span onclick="rate(event,'${id}',1)">★</span>
+  <span onclick="rate(event,'${id}',2)">★</span>
+  <span onclick="rate(event,'${id}',3)">★</span>
+  <span onclick="rate(event,'${id}',4)">★</span>
+  <span onclick="rate(event,'${id}',5)">★</span>
+</div>
 
-    <div class="comments">
-      <input type="text" class="comment-input" onclick="event.stopPropagation()" placeholder="Drop a comment...">
-      <button onclick="addComment(this, event)">Post</button>
-      <ul class="comment-list" onclick="event.stopPropagation()"></ul>
-    </div>
 
-    <div class="like-section">
-      <button onclick="likeLoadout(event, this)">👍 Like</button>
-      <span class="like-count">0</span>
-    </div>
+<!-- 💬 COMMENTS -->
+<div class="commentBox" onclick="event.stopPropagation()">
+  <input placeholder="Write a comment..." id="input-${id}">
+  <button onclick="addComment(event,'${id}')">Send 🚀</button>
+  <ul id="list-${id}"></ul>
+</div>
 
-  </div>
-`;
 
-card.onclick = (e) => {
-  // 🚫 ignore clicks from interaction area
-  if (e.target.closest(".interaction-box") || e.target.tagName === "BUTTON") {
-    return;
-  }
+<button onclick="event.stopPropagation(); downloadSpecific('${id}')">📥 Download</button>
 
-  openModal(loadout.name, loadout.desc, loadout.attach, loadout.img);
-};
+<div style="margin-top:10px;">
+  <button onclick="likeLoadout(event,this,'${id}')">👍 Like</button>
+  <span id="like-${id}">0</span>
+</div>
+    
+  `;
+
+  card.onclick = () => openModal(l.name,l.desc,l.attach,l.img);
 
   container.appendChild(card);
-  allCards.push(card);
+  cards.push(card);
+
+  // hidden download element
+  const hidden = document.createElement("div");
+  hidden.id = id;
+  hidden.style.display = "none";
+  hidden.innerHTML = `
+    <h2>${l.name}</h2>
+    <p>${l.desc}</p>
+    <p>${l.attach}</p>
+  `;
+
+  document.body.appendChild(hidden);
 });
 
-// 🔍 SEARCH FUNCTION
-const searchBar = document.getElementById("searchBar");
-
-searchBar.addEventListener("input", () => {
-  const value = searchBar.value.toLowerCase();
-
-  allCards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-
-    if(text.includes(value)){
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+// 🔍 SEARCH
+document.getElementById("searchBar").addEventListener("input",e=>{
+  const v = e.target.value.toLowerCase();
+  cards.forEach(c=>{
+    c.style.display = c.innerText.toLowerCase().includes(v) ? "block" : "none";
   });
 });
 
-// Filter placeholder
-function filter(type){
- alert('Filter system can be expanded later 😎');
-}
-function likeLoadout(event, button) {
+// ❤️ LIKE SYSTEM (FIXED)
+function likeLoadout(event, button, id) {
   event.stopPropagation();
 
-  const countSpan = button.nextElementSibling;
-  let count = parseInt(countSpan.innerText);
+  const counter = document.getElementById("like-" + id);
+  let count = parseInt(counter.innerText);
 
-  // check if already liked
   if (button.classList.contains("liked")) {
-    count--;
     button.classList.remove("liked");
+    count--;
     button.innerText = "👍 Like";
   } else {
-    count++;
     button.classList.add("liked");
+    count++;
     button.innerText = "💖 Liked";
   }
 
-  countSpan.innerText = count;
+  counter.innerText = count;
 }
 
-</script>
-
-<script>
-function rate(element, value) {
-  let stars = element.parentNode.children;
-  for (let i = 0; i < stars.length; i++) {
-    stars[i].classList.remove("active");
-  }
-  for (let i = 0; i < value; i++) {
-    stars[i].classList.add("active");
-  }
-  localStorage.setItem("rating", value);
-}function addComment(button, event) {
+// FILTER (future)
+function filter(t){
+  alert("Filter coming soon 😎");
+}
+function rate(event,id,val){
   event.stopPropagation();
 
-  let card = button.closest(".card");
-  let input = card.querySelector(".comment-input");
-  let list = card.querySelector(".comment-list");
+  let saved = JSON.parse(localStorage.getItem("ratings")) || {};
+  saved[id] = val;
 
-  if (!input.value.trim()) return;
+  localStorage.setItem("ratings", JSON.stringify(saved));
 
-  let text = input.value;
+  applyAllRatings();
+}
 
-  // 🔥 create comment element
-  let li = document.createElement("li");
-  li.textContent = text;
-  list.appendChild(li);
 
-  // 🔥 SAVE to localStorage
-  let id = card.querySelector("h4").innerText; // unique per gun
+function applyAllRatings(){
+  let saved = JSON.parse(localStorage.getItem("ratings")) || {};
+
+  document.querySelectorAll(".card").forEach(card=>{
+    let id = card.querySelector("h4").innerText.replace(/\s+/g,'').toLowerCase();
+    let stars = card.querySelectorAll(".rating span");
+
+    stars.forEach((s,i)=>{
+      s.style.color = (saved[id] && i < saved[id]) ? "#ff0033" : "#444";
+    });
+  });
+}
+function addComment(event,id){
+  event.stopPropagation();
+
+  let input = document.getElementById("input-" + id);
+  let list = document.getElementById("list-" + id);
+
+  if(!input.value.trim()) return;
+
   let saved = JSON.parse(localStorage.getItem("comments")) || {};
 
-  if (!saved[id]) saved[id] = [];
-  saved[id].push(text);
+  if(!saved[id]) saved[id] = [];
+  saved[id].push(input.value);
 
   localStorage.setItem("comments", JSON.stringify(saved));
 
+  renderComments(list, saved[id]); // 🔥 FIXED
+
   input.value = "";
 }
-setTimeout(() => {
+
+
+function renderComments(list, comments){
+  list.innerHTML = "";
+  comments.forEach(c=>{
+    let li = document.createElement("li");
+    li.innerText = c;
+    list.appendChild(li);
+  });
+}
+window.addEventListener("load",()=>{
   let saved = JSON.parse(localStorage.getItem("comments")) || {};
 
-  document.querySelectorAll(".card").forEach(card => {
-    let id = card.querySelector("h4").innerText;
-    let list = card.querySelector(".comment-list");
+  document.querySelectorAll(".card").forEach(card=>{
+    let id = card.querySelector("h4").innerText.replace(/\s+/g,'').toLowerCase();
+    let list = document.getElementById("list-" + id);
 
-    if (saved[id]) {
-      saved[id].forEach(comment => {
-        let li = document.createElement("li");
-        li.textContent = comment;
-        list.appendChild(li);
-      });
+    if(saved[id]){
+      renderComments(list, saved[id]);
     }
   });
-}, 100);
-let score = 0;
-let gameInterval;
-let gameActive = false;
 
-function startGame(){
-  score = 0;
-  gameActive = true;
-
-  document.getElementById("score").innerText = score;
-  document.getElementById("gameOverBox").style.display = "none";
-
-  const target = document.getElementById("target");
-  const box = document.getElementById("gameBox");
-
-  target.style.display = "block";
-
-  // detect MISS click
-  box.onclick = function(e){
-    if (!gameActive) return;
-
-    if (e.target.id !== "target") {
-      endGame();
-    }
-  };
-
-  moveTarget();
-
-  clearInterval(gameInterval);
-gameInterval = setInterval(moveTarget, 650);
-
-  // ⏱ stop after 15 sec
-  setTimeout(() => {
-    if (gameActive) endGame();
-  }, 15000);
-}
-
-function moveTarget(){
-  const box = document.getElementById("gameBox");
-  const target = document.getElementById("target");
-
-  const x = Math.random() * (box.clientWidth - 40);
-  const y = Math.random() * (box.clientHeight - 40);
-
-  target.style.left = x + "px";
-  target.style.top = y + "px";
-}
-
-// 🎯 HIT
-document.getElementById("target").onclick = function(e){
-  e.stopPropagation();
-
-  if (!gameActive) return;
-
-  score++;
-  document.getElementById("score").innerText = score;
-};
-
-// ❌ END GAME
-function endGame(){
-  gameActive = false;
-  clearInterval(gameInterval);
-
-  document.getElementById("target").style.display = "none";
-
-  document.getElementById("finalScore").innerText = score;
-  document.getElementById("gameOverBox").style.display = "block";
-}
+  applyAllRatings(); // 🔥 also added here
+});
 
 </script>
-
 </body>
 </html>
