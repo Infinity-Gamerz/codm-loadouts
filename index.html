@@ -4,6 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Infinity Gamerz</title>
 
+<link rel="stylesheet" href="style.css">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#0f0f0f;color:#fff;scroll-behavior:smooth}
@@ -50,7 +52,7 @@ nav a:hover{color:#ff0033}
 .category-buttons button{margin:10px;padding:10px 20px;border:none;border-radius:8px;background:#222;color:#fff;cursor:pointer}
 .category-buttons button:hover{background:#ff0033}
 
-iframe{width:100%;height:250px;border:none;border-radius:10px}
+iframe{width:100%;height:180px;border:none;border-radius:10px}
 
 .about{text-align:center;color:#aaa}
 .footer{text-align:center;padding:20px;background:#000;margin-top:40px;color:#777}
@@ -91,7 +93,7 @@ iframe{width:100%;height:250px;border:none;border-radius:10px}
 <h3>🔥 Featured Loadouts</h3>
 
 <!-- 🔍 SEARCH BAR ADDED -->
-<input type="text" id="searchBar" placeholder="Search loadouts...">
+<input type="text" id="searchBar" placeholder="Search loadouts...(plz enter exact spelling)">
 
 <div id="loadouts-container" class="grid"></div>
 </section>
@@ -178,13 +180,19 @@ const loadouts = [
     name: "Koshka",
     desc: "Godlike build",
     attach: "MIP Light Barrel (Short) | OWC Laser Tactical | Mobility Stock | Stippled Grip Tape | Fast Switch",
-    img: "./images/koshka.jpg"
+   img: "./images/koshka.jpg"
   },
   {
     name: "3-Line Rifle",
     desc: "One Shot kill (for beginners)",
     attach: ".30-06 20 Round Mag | SMLE Pistol Grip | 270MM VOZ CARBINE | EMPRESS MARKSMAN | Fast Switch",
     img: "./images/3-line.jpg"
+  },
+  {
+    name: "HDR",
+    desc: " Insta Kill",
+    attach: "4x Tactical Scope | FTAC Stalker-Scout | 7 Rnd Mag | OWC Laser - Tactical | Fast Switch",
+    img: "./images/hdr.jpg"
   },
 ];
 
@@ -201,9 +209,38 @@ loadouts.forEach(loadout => {
     <img src="${loadout.img}">
     <h4>${loadout.name}</h4>
     <p>Tap to view build</p>
-  `;
+<div class="interaction-box">
+  <div class="rating">
+    ⭐ Rate:
+    <span onclick="rate(this,1)">★</span>
+    <span onclick="rate(this,2)">★</span>
+    <span onclick="rate(this,3)">★</span>
+    <span onclick="rate(this,4)">★</span>
+    <span onclick="rate(this,5)">★</span>
+  </div>
+<div class="comments">
+  <input type="text" class="comment-input" onclick="event.stopPropagation()" placeholder="Drop a comment...">
+  <button onclick="addComment(this, event)">Post</button>
+  <ul class="comment-list" onclick="event.stopPropagation()"></ul>
+</div>
 
-  card.onclick = () => openModal(loadout.name,loadout.desc,loadout.attach,loadout.img);
+    
+  </div>
+</div>
+
+ <div class="like-section">
+  <button onclick="likeLoadout(event, this)">👍 Like</button>
+  <span class="like-count">0</span>
+ </div>
+`;
+card.onclick = (e) => {
+  // 🚫 ignore clicks from interaction area
+  if (e.target.closest(".interaction-box") || e.target.tagName === "BUTTON") {
+    return;
+  }
+
+  openModal(loadout.name, loadout.desc, loadout.attach, loadout.img);
+};
 
   container.appendChild(card);
   allCards.push(card);
@@ -229,6 +266,55 @@ searchBar.addEventListener("input", () => {
 // Filter placeholder
 function filter(type){
  alert('Filter system can be expanded later 😎');
+}
+function likeLoadout(event, button) {
+  event.stopPropagation();
+
+  const countSpan = button.nextElementSibling;
+  let count = parseInt(countSpan.innerText);
+
+  // check if already liked
+  if (button.classList.contains("liked")) {
+    count--;
+    button.classList.remove("liked");
+    button.innerText = "👍 Like";
+  } else {
+    count++;
+    button.classList.add("liked");
+    button.innerText = "💖 Liked";
+  }
+
+  countSpan.innerText = count;
+}
+
+</script>
+
+<script>
+function rate(element, value) {
+  let stars = element.parentNode.children;
+  for (let i = 0; i < stars.length; i++) {
+    stars[i].classList.remove("active");
+  }
+  for (let i = 0; i < value; i++) {
+    stars[i].classList.add("active");
+  }
+  localStorage.setItem("rating", value);
+}function addComment(button, event) {
+  event.stopPropagation();
+
+  // ✅ find the correct interaction box
+  let box = button.closest(".interaction-box");
+
+  let input = box.querySelector(".comment-input");
+  let list = box.querySelector(".comment-list");
+
+  if (!input.value.trim()) return;
+
+  let li = document.createElement("li");
+  li.textContent = input.value;
+  list.appendChild(li);
+
+  input.value = "";
 }
 </script>
 
