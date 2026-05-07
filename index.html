@@ -6,8 +6,9 @@
 <title>Infinity Gamerz</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0f0f0f;color:#fff;scroll-behavior:smooth}
+*{
+  margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0f0f0f;color:#fff}
 
 header{
  display:flex;justify-content:space-between;align-items:center;
@@ -35,165 +36,277 @@ nav a:hover{color:#ff0033}
   border-radius:10px;
   border:none;
   outline:none;
-  font-size:16px;
 }
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
 .card{
-  background:#111;
+  background: linear-gradient(145deg, #0a0a0a, #0f0f0f, #0a0a0a);
   padding:15px;
   border-radius:15px;
+  transition:0.3s ease;
   cursor:pointer;
-  transition:.3s;
+
+  border:1px solid rgba(255,255,255,0.05);
 }
+
 .card:hover{transform:translateY(-8px);box-shadow:0 0 15px #ff0033}
+
 .card img{width:100%;border-radius:10px}
 
-.category-buttons{text-align:center}
-.category-buttons button{
-  margin:10px;
-  padding:10px 20px;
-  border:none;
-  border-radius:8px;
-  background:#222;
-  color:#fff;
-  cursor:pointer;
-}
-.category-buttons button:hover{background:#ff0033}
-
-.footer{text-align:center;padding:20px;background:#000;margin-top:40px;color:#777}
-
-/* MODAL */
-.modal{
- display:none;position:fixed;top:0;left:0;width:100%;height:100%;
- background:rgba(0,0,0,0.85);
- justify-content:center;align-items:center;
-}
-.modal-content{
- background:#111;
- padding:25px;
- border-radius:15px;
- max-width:400px;
- text-align:center;
- box-shadow:0 0 20px #ff0033;
-}
-.close{cursor:pointer;color:#ff0033;font-size:22px;float:right}
-
-/* GAME */
-#gameBox{
-  width:100%;
-  max-width:500px;
-  height:300px;
-  margin:20px auto;
-  background:#000;
-  border:2px solid #ff0033;
-  border-radius:15px;
-  position:relative;
-  overflow:hidden;
-}
-
-#target{
-  width:40px;
-  height:40px;
-  background:red;
-  border-radius:50%;
-  position:absolute;
-  cursor:pointer;
-  box-shadow:0 0 10px #ff0033;
-}
 button{
   cursor:pointer;
   border:none;
-  padding:8px 14px;
-  margin-top:10px;
-  border-radius:10px;
-  background:linear-gradient(145deg,#111,#1c1c1c);
-  color:#fff;
-  transition:0.25s;
-  box-shadow:0 0 10px rgba(255,0,51,0.15);
-}
-
-button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 15px #ff0033;
-}
-
-.liked{
-  background:#ff0033;
-  color:#fff;
-  box-shadow:0 0 20px #ff0033;
-}
-.commentBox{
-  margin-top:10px;
-  background:rgba(255,255,255,0.05);
-  padding:10px;
-  border-radius:12px;
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-.commentBox input{
-  width:100%;
-  padding:10px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-  background:#111;
-  color:#fff;
-  margin-bottom:8px;
-}
-
-.commentBox ul{
-  list-style:none;
-  margin-top:8px;
-}
-
-.commentBox li{
-  background:rgba(255,0,51,0.1);
   padding:6px 10px;
-  margin:5px 0;
-  border-radius:8px;
-  border-left:3px solid #ff0033;
-}
-.rating{
   margin-top:8px;
-  font-size:18px;
-  letter-spacing:2px;
+  border-radius:6px;
+  background:#222;
+  color:#fff;
 }
+
+button:hover{background:#ff0033}
 
 .rating span{
   cursor:pointer;
-  color:#444;
-  transition:0.2s;
+  font-size:18px;
+  color:#fff;
 }
 
-.rating span:hover{
+.liked{color:#ff0033;font-weight:bold}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  background:#000;
+  margin-top:40px;
+  color:#777;
+}
+.rating span{
+  font-size:22px;
+  cursor:pointer;
+  transition:0.2s;
+  color:#444;
+}
+
+.rating span.active{
   color:#ff0033;
   transform:scale(1.2);
 }
-.rating, .commentBox, button{
-  position:relative;
-  z-index:2;
+
+.rating span:hover{
+  transform:scale(1.3);
 }
+button.liked{
+  background:#ff0033;
+  color:#fff;
+  transform:scale(1.05);
+  box-shadow:0 0 10px #ff0033;
+  transition:0.2s;
+}
+.comment-box{
+  margin-top:10px;
+}
+
+.comment-input{
+  display:flex;
+  gap:8px;
+}
+
+.comment-input input{
+  flex:1;
+  padding:8px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  background:#1a1a1a;
+  color:white;
+}
+
+.comment-input button{
+  padding:8px 12px;
+  border-radius:8px;
+  background:#ff0033;
+  font-weight:bold;
+}
+
+.comment-list{
+  list-style:none;
+  margin-top:10px;
+  padding:0;
+}
+
+.comment-list li{
+  background:#1a1a1a;
+  padding:8px 10px;
+  margin-top:6px;
+  border-radius:8px;
+  font-size:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.card{
+  transition:0.3s ease;
+}
+
+/* when selected */
+
+.card.active{
+  animation: glowPulse 1s infinite, cardPulse 0.6s ease;
+}
+
+
+/* smooth glow animation */
+@keyframes glowPulse{
+  0%{box-shadow:0 0 10px rgba(255,0,51,0.3);
+  }
+  50%{box-shadow:0 0 200px rgba(255,0,51,0.8);}
+  100%{box-shadow:0 0 100px rgba(255,0,51,0.3);}
+}
+
 .card{
   position:relative;
   overflow:hidden;
+ /* IMPORTANT: clips ribbon */
+  isolation:isolate;  /* 🔥 forces proper stacking context */
 }
 
+/* RIBBON */
 .card::before{
   content:"";
   position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(45deg,transparent,#ff0033,transparent);
-  top:-100%;
-  left:0;
-  transition:0.5s;
+
+  width:40%;
+  height:320%;
+
+  top:-110%;
+  left:-50%;
+
+  transform: rotate(25deg) translateX(-260%);
+
+  background:#ff0000;
+
+  opacity:0;
+  pointer-events:none;
+
+  z-index:2; /* keep it inside card layer system */
 }
 
-.card:hover::before{
-  top:100%;
+/* ANIMATION */.card.active::before{
+  opacity:1;
+  animation: ribbonSweep 1.9s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+/* RIBBON MOVEMENT + FADE */
+@keyframes ribbonSweep{
+  0%{
+    transform: rotate(25deg) translateX(-320%);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;   /* fade in */
+  }
+
+  75%{
+    opacity:1;   /* fully visible in middle */
+  }
+
+  100%{
+    transform: rotate(25deg) translateX(320%);
+    opacity:0;   /* smooth fade out */
+  }
+}
+
+/* NEON EDGE GLOW */
+.card.active::before{
+  box-shadow:
+    0 0 8px #ff0000,
+    0 0 18px #ff0000,
+    0 0 40px rgba(255,0,0,0.7),
+    0 0 80px rgba(255,0,0,0.3);
+}
+.like-pop{
+  animation: likePop 0.3s ease;
+}
+
+@keyframes likePop{
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+  button:active{
+  transform: scale(0.9);
+}
+
+#aimTrainer{
+  text-align:center;
+  padding:60px 20px;
+}
+#gameBox{
+  width:90%;
+  max-width:350px;
+  aspect-ratio:1/1; /* keeps it square */
+  margin:20px auto;
+  background:#1a1a1a;
+  border:2px solid #333;
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+  display:none;
+}
+
+
+#startBtn{
+  padding:10px 20px;
+  font-size:16px;
+  background:#ff3c3c;
+  color:white;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+#gameOverScreen{
+  display:none;
+  margin-top:20px;
+}
+
+.ball{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  position:absolute;
+  background:red;
+  box-shadow:0 0 15px red, 0 0 30px red;
+  cursor:pointer;
+  animation:pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse{
+  from{ transform:scale(1); }
+  to{ transform:scale(1.15); }
+}
+
+
+.ball{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  position:absolute;
+  background:red;
+  box-shadow:0 0 15px red, 0 0 30px red;
+  cursor:pointer;
+  animation:pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse{
+  from{ transform:scale(1); }
+  to{ transform:scale(1.15); }
 }
 </style>
 </head>
@@ -205,7 +318,6 @@ button:hover{
 <nav>
 <a href="#">Home</a>
 <a href="#loadouts">Loadouts</a>
-<a href="#videos">Videos</a>
 <a href="#about">About</a>
 </nav>
 </header>
@@ -214,25 +326,54 @@ button:hover{
 <h2>Best COD Mobile Loadouts 🔫</h2>
 <p>Sniper builds • No recoil setups • Aggressive gameplay</p>
 <a href="#loadouts" class="btn">View Loadouts</a>
-<a href="https://youtube.com/@infinitygaming1-1" target="_blank" class="btn">Subscribe</a>
 </section>
+
+<h1 style="
+  color:#ff0033;
+  font-size:18px;
+  font-weight:bold;
+  text-transform: uppercase;
+  text-align:center;
+  text-shadow:
+    0 0 5px #ff0033,
+    0 0 10px #ff0033,
+    0 0 20px #ff0033,
+    0 0 40px rgba(255,0,51,0.7);
+">
+  🎥 Watch This Tutorial to be
+  PRO in quick-scoping
+</h1>
+
+<iframe width="100%" height="200"
+  src="https://www.youtube.com/embed/0IyXgkjtXpY"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
 
 <section id="loadouts" class="section">
 <h3>🔥 Featured Loadouts</h3>
-
 <input type="text" id="searchBar" placeholder="Search loadouts...">
-
 <div id="loadouts-container" class="grid"></div>
-</section>
 
-<section class="section">
-<h3>🎯 Categories</h3>
-<div class="category-buttons">
-<button onclick="filter('all')">All</button>
-<button onclick="filter('sniper')">Snipers</button>
-<button onclick="filter('ar')">AR</button>
-<button onclick="filter('smg')">SMG</button>
-</div>
+<div id="pagination" style="text-align:center; margin-top:20px;"></div>
+
+</section>
+<section id="aimTrainer">
+  <h2>‎ ‎ ‎ ‎ ‎ ‎ ‎ 🎯 Mini Aim Trainer‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎        ‎ 
+  TEST YOUR REACTION TIME</h2>
+
+  <div id="score">Score: 0</div>
+
+  <button id="startBtn">Start Game</button>
+
+  <div id="gameBox"></div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen">
+    <h2>Game Over</h2>
+    <p id="finalScore"></p>
+    <button onclick="startGame()">Play Again</button>
+  </div>
 </section>
 
 <section id="about" class="section">
@@ -246,66 +387,25 @@ Infinity Gamerz — CODM Loadouts & Gameplay
 <p>© 2026 Infinity Gamerz 👑</p>
 </div>
 
-<!-- MODAL -->
-<div id="modal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">✖</span>
-<img id="modalImg" style="width:100%;border-radius:10px;margin-bottom:10px;">
-<h2 id="gunName"></h2>
-<p id="gunDesc"></p>
-<p id="gunAttach"></p>
-</div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <script>
-function getId(name){
-  return name.replace(/\s+/g,'').toLowerCase();
-}
-function openModal(name,desc,attach,img){
-  document.getElementById('modal').style.display='flex';
-  document.getElementById('gunName').innerText=name;
-  document.getElementById('gunDesc').innerText=desc;
-  document.getElementById('gunAttach').innerText="Attachments: "+attach;
-  document.getElementById('modalImg').src=img;
-}
-
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-}
-
-function downloadSpecific(id){
-  const el=document.getElementById(id);
-  html2canvas(el).then(canvas=>{
-    const link=document.createElement("a");
-    link.download=id+".png";
-    link.href=canvas.toDataURL("image/png");
-    link.click();
-  });
-}
-
-// 🔥 LOADOUT DATA
-const loadouts=[
-  {
+const loadouts = [
+{
  name:"DL Q33 👑",
  desc:"Fast ADS one-shot build",
- category:"sniper",
- attach:"MIP Light | OWC Laser | Fast Switch | Extended Mag A | YKM Combat Stock",
+ attach:"MIP Light | OWC Laser | Fast Switch | Extended Mag A",
  img:"images/dl-q33.jpg"
 },
 {
  name:"LOCUS 💯",
  desc:"Fast ADS one-shot build",
- category:"sniper",
- attach:"OWC Laser | YKM Lightweight Short | OWC Skeleton Stock | OWC Stopping Power Reload | Stippled Grip Tape",
+ attach:"OWC Laser | Skeleton Stock | Stippled Grip Tape",
  img:"images/locus.jpg"
 },
 {
  name:"Arctic .50 🔥",
- desc:"Fast ADS one-shot build",
- category:"sniper",
- attach:"Assassin Short | OWC Skeleton Stock | Fast Switch | MIP Stopping Power Reload | Stippled Grip Tape",
- img:"images/arctic.50.jpg"
+ desc:"Fast ADS sniper",
+ attach:"Assassin Short | Skeleton Stock | Fast Switch",
+ img:"images/arctic50.jpg"
 },
 {
  name:"LW3-Tundra",
@@ -334,170 +434,471 @@ const loadouts=[
  category:"sniper",
  attach:"4x Scope | FTAC Stalker | 7 Rnd Mag | OWC Laser Tactical | Fast Switch",
  img:"images/hdr.jpg"
-}
+},
+{
+ name:"ZRG-20MM",
+ desc:"Recomended for higher sensitivity",
+ category:"sniper",
+ attach:"MIP Light Barrel (Short) | YKM Combat Stock | Stippled Grip Tape | OWC Laser Tactical | Fast Switch",
+ img:"images/zrg20mm.jpg"
+},
+{
+ name:"KILO 141",
+ desc:"Best long-short (no recoil built) ",
+ category:"sniper",
+ attach:"YKM Integral Suppressor Light | Tactical Foregrip A | Extended Mag A | OWC Skeleton Stock | Granulated Grip Tape",
+ img:"images/kilo141.jpg"
+},
 ];
 
 const container = document.getElementById("loadouts-container");
 let cards = [];
 
-// ⭐ CREATE CARDS (FIXED)
-loadouts.forEach(l => {
+// CREATE CARDS
+const pagination = document.getElementById("pagination");
 
-  const id = getId(l.name)
+const itemsPerPage = 5;
+let currentPage = 1;
 
-  // CARD
-  const card = document.createElement("div");
-  card.className = "card";
+// 🔥 RENDER PAGE
+function renderPage(page){
+  container.innerHTML = "";
+  cards = [];
+  currentPage = page;
 
-  card.innerHTML = `<img src="${l.img}">
-<h4>${l.name}</h4>
-<p>Tap to view</p>
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
 
-<!-- ⭐ RATING -->
-<div class="rating" onclick="event.stopPropagation()">
-  <span onclick="rate(event,'${id}',1)">★</span>
-  <span onclick="rate(event,'${id}',2)">★</span>
-  <span onclick="rate(event,'${id}',3)">★</span>
-  <span onclick="rate(event,'${id}',4)">★</span>
-  <span onclick="rate(event,'${id}',5)">★</span>
-</div>
+  const pageItems = loadouts.slice(start, end);
 
+  pageItems.forEach(l => {
 
-<!-- 💬 COMMENTS -->
-<div class="commentBox" onclick="event.stopPropagation()">
-  <input placeholder="Write a comment..." id="input-${id}">
-  <button onclick="addComment(event,'${id}')">Send 🚀</button>
-  <ul id="list-${id}"></ul>
-</div>
+    const id = l.name.replace(/\s+/g,'').toLowerCase();
 
+    const card = document.createElement("div");
+    card.className = "card";
 
-<button onclick="event.stopPropagation(); downloadSpecific('${id}')">📥 Download</button>
+    card.innerHTML = `
+      <img src="${l.img}" onclick="openImage(event,'${l.img}')">
+      <h4>${l.name}</h4>
+      <p>${l.desc}</p>
 
-<div style="margin-top:10px;">
-  <button onclick="likeLoadout(event,this,'${id}')">👍 Like</button>
-  <span id="like-${id}">0</span>
-</div>
-    
-  `;
+      <div class="rating" id="rating-${id}" onclick="event.stopPropagation()"></div>
+      <p id="rate-text-${id}" style="font-size:12px;color:#aaa"></p>
 
-  card.onclick = () => openModal(l.name,l.desc,l.attach,l.img);
+      <div class="comment-box" onclick="event.stopPropagation()">
+        <div class="comment-input">
+          <input placeholder="Write a comment..." id="input-${id}">
+          <button onclick="addComment(event,'${id}')">➤</button>
+        </div>
+        <ul id="list-${id}" class="comment-list"></ul>
+      </div>
 
-  container.appendChild(card);
-  cards.push(card);
+      <div>
+        <button class="like-btn" onclick="like(event,this,'${id}')">👍 Like</button>
+        <span id="like-${id}">0</span>
+      </div>
 
-  // hidden download element
-  const hidden = document.createElement("div");
-  hidden.id = id;
-  hidden.style.display = "none";
-  hidden.innerHTML = `
-    <h2>${l.name}</h2>
-    <p>${l.desc}</p>
-    <p>${l.attach}</p>
-  `;
+      <div>
+        <button class="download-btn" onclick="downloadImage(event,this,'${l.img}')">
+          ⬇ Download
+        </button>
+      </div>
+    `;
 
-  document.body.appendChild(hidden);
-});
+    container.appendChild(card);
+    cards.push(card);
 
-// 🔍 SEARCH
-document.getElementById("searchBar").addEventListener("input",e=>{
-  const v = e.target.value.toLowerCase();
-  cards.forEach(c=>{
-    c.style.display = c.innerText.toLowerCase().includes(v) ? "block" : "none";
-  });
-});
+    // animation click
+    card.onclick = () => {
+      document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+      card.classList.remove("active");
+      void card.offsetWidth;
+      card.classList.add("active");
+    };
 
-// ❤️ LIKE SYSTEM (FIXED)
-function likeLoadout(event, button, id) {
-  event.stopPropagation();
+    // restore data
+    loadSaved(id);
+    createStars(id);
 
-  const counter = document.getElementById("like-" + id);
-  let count = parseInt(counter.innerText);
+    let savedLikes = parseInt(localStorage.getItem("likes-"+id)) || 0;
+    let likeSpan = document.getElementById("like-"+id);
+    let btn = card.querySelector(".like-btn");
 
-  if (button.classList.contains("liked")) {
-    button.classList.remove("liked");
-    count--;
-    button.innerText = "👍 Like";
-  } else {
-    button.classList.add("liked");
-    count++;
-    button.innerText = "💖 Liked";
-  }
+    likeSpan.innerText = savedLikes;
 
-  counter.innerText = count;
-}
-
-// FILTER (future)
-function filter(t){
-  alert("Filter coming soon 😎");
-}
-function rate(event,id,val){
-  event.stopPropagation();
-
-  let saved = JSON.parse(localStorage.getItem("ratings")) || {};
-  saved[id] = val;
-
-  localStorage.setItem("ratings", JSON.stringify(saved));
-
-  applyAllRatings();
-}
-
-
-function applyAllRatings(){
-  let saved = JSON.parse(localStorage.getItem("ratings")) || {};
-
-  document.querySelectorAll(".card").forEach(card=>{
-    let id = card.querySelector("h4").innerText.replace(/\s+/g,'').toLowerCase();
-    let stars = card.querySelectorAll(".rating span");
-
-    stars.forEach((s,i)=>{
-      s.style.color = (saved[id] && i < saved[id]) ? "#ff0033" : "#444";
-    });
-  });
-}
-function addComment(event,id){
-  event.stopPropagation();
-
-  let input = document.getElementById("input-" + id);
-  let list = document.getElementById("list-" + id);
-
-  if(!input.value.trim()) return;
-
-  let saved = JSON.parse(localStorage.getItem("comments")) || {};
-
-  if(!saved[id]) saved[id] = [];
-  saved[id].push(input.value);
-
-  localStorage.setItem("comments", JSON.stringify(saved));
-
-  renderComments(list, saved[id]); // 🔥 FIXED
-
-  input.value = "";
-}
-
-
-function renderComments(list, comments){
-  list.innerHTML = "";
-  comments.forEach(c=>{
-    let li = document.createElement("li");
-    li.innerText = c;
-    list.appendChild(li);
-  });
-}
-window.addEventListener("load",()=>{
-  let saved = JSON.parse(localStorage.getItem("comments")) || {};
-
-  document.querySelectorAll(".card").forEach(card=>{
-    let id = card.querySelector("h4").innerText.replace(/\s+/g,'').toLowerCase();
-    let list = document.getElementById("list-" + id);
-
-    if(saved[id]){
-      renderComments(list, saved[id]);
+    if(savedLikes > 0){
+      btn.classList.add("liked");
+      btn.innerText = "❤️ Liked";
+    } else {
+      btn.innerText = "👍 Like";
     }
   });
 
-  applyAllRatings(); // 🔥 also added here
+  renderPagination();
+}
+
+// 🔢 PAGE BUTTONS
+function renderPagination(){
+  pagination.innerHTML = "";
+
+  const totalPages = Math.ceil(loadouts.length / itemsPerPage);
+
+  for(let i = 1; i <= totalPages; i++){
+    const btn = document.createElement("button");
+    btn.innerText = i;
+
+    if(i === currentPage){
+      btn.style.background = "#ff0033";
+    }
+
+    btn.onclick = () => renderPage(i);
+
+    pagination.appendChild(btn);
+  }
+}
+
+// 🚀 START
+renderPage(1);
+
+
+// SEARCH
+document.getElementById("searchBar").addEventListener("input", e => {
+  const value = e.target.value.toLowerCase();
+
+  // 🔍 if search empty → go back to pagination
+  if(value === ""){
+    renderPage(1);
+    pagination.style.display = "block";
+    return;
+  }
+
+  // 🔎 filter ALL loadouts
+  const filtered = loadouts.filter(l => 
+    l.name.toLowerCase().includes(value) ||
+    l.desc.toLowerCase().includes(value) ||
+    (l.attach && l.attach.toLowerCase().includes(value))
+  );
+  if(filtered.length === 0){
+  container.innerHTML = "<p style='text-align:center;color:#aaa'>No loadouts found 😢</p>";
+  return;
+}
+
+  // show filtered results
+  container.innerHTML = "";
+  pagination.style.display = "none"; // hide page buttons
+
+  filtered.forEach(l => {
+
+    const id = l.name.replace(/\s+/g,'').toLowerCase();
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${l.img}" onclick="openImage(event,'${l.img}')">
+      <h4>${l.name}</h4>
+      <p>${l.desc}</p>
+
+      <div class="rating" id="rating-${id}" onclick="event.stopPropagation()"></div>
+      <p id="rate-text-${id}" style="font-size:12px;color:#aaa"></p>
+
+      <div class="comment-box" onclick="event.stopPropagation()">
+        <div class="comment-input">
+          <input placeholder="Write a comment..." id="input-${id}">
+          <button onclick="addComment(event,'${id}')">➤</button>
+        </div>
+        <ul id="list-${id}" class="comment-list"></ul>
+      </div>
+
+      <div>
+        <button class="like-btn" onclick="like(event,this,'${id}')">👍 Like</button>
+        <span id="like-${id}">0</span>
+      </div>
+
+      <div>
+        <button class="download-btn" onclick="downloadImage(event,this,'${l.img}')">
+          ⬇ Download
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+
+    // restore features
+    loadSaved(id);
+    createStars(id);
+
+    let savedLikes = parseInt(localStorage.getItem("likes-"+id)) || 0;
+    let likeSpan = document.getElementById("like-"+id);
+    let btn = card.querySelector(".like-btn");
+
+    likeSpan.innerText = savedLikes;
+
+    if(savedLikes > 0){
+      btn.classList.add("liked");
+      btn.innerText = "❤️ Liked";
+    }
+  });
+
 });
 
+function like(e, btn, id){
+  e.stopPropagation();
+
+  let countEl = document.getElementById("like-"+id);
+  let likes = parseInt(localStorage.getItem("likes-"+id)) || 0;
+
+  let isLiked = btn.classList.contains("liked");
+
+  if(isLiked){
+    // ❌ UNLIKE
+    likes = Math.max(0, likes - 1);
+    btn.classList.remove("liked");
+    btn.innerText = "👍 Like";
+  } else {
+    // ❤️ LIKE
+    likes++;
+    btn.classList.add("liked");
+    btn.innerText = "❤️ Liked";
+  }
+
+  localStorage.setItem("likes-"+id, likes);
+  countEl.innerText = likes;
+
+  // 🔥 animation
+  countEl.classList.remove("like-pop");
+  void countEl.offsetWidth;
+  countEl.classList.add("like-pop");
+
+  // 🔥 card glow
+  const card = btn.closest(".card");
+
+  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+
+  card.classList.remove("active");
+  void card.offsetWidth;
+  card.classList.add("active");
+}
+
+/* RATING */
+function createStars(id){
+  const container = document.getElementById("rating-"+id);
+  const saved = localStorage.getItem("rate-"+id) || 0;
+
+  container.innerHTML = "";
+
+  for(let i=1;i<=5;i++){
+    let star = document.createElement("span");
+    star.innerHTML = "★";
+
+    if(i <= saved){
+      star.classList.add("active");
+    }
+
+    star.onclick = (e)=>{
+      e.stopPropagation();
+      localStorage.setItem("rate-"+id,i);
+      createStars(id);
+      document.getElementById("rate-text-"+id).innerText = "You rated " + i + " ⭐";
+    };
+
+    container.appendChild(star);
+  }
+
+  if(saved > 0){
+    document.getElementById("rate-text-"+id).innerText = "You rated " + saved + " ⭐";
+  }
+}
+
+
+/* COMMENTS */
+function addComment(e,id){
+  e.stopPropagation();
+
+  let input = document.getElementById("input-"+id);
+  let list = document.getElementById("list-"+id);
+
+  if(!input.value) return;
+
+  let data = JSON.parse(localStorage.getItem("c-"+id)) || [];
+  data.push(input.value);
+
+  localStorage.setItem("c-"+id,JSON.stringify(data));
+
+  input.value="";
+  render(list,data);
+}
+
+/* LOAD SAVED */
+function loadSaved(id){
+  let list = document.getElementById("list-"+id);
+
+  let comments = JSON.parse(localStorage.getItem("c-"+id)) || [];
+  render(list,comments);
+}
+
+/* RENDER COMMENTS */
+function render(list,data){
+  list.innerHTML="";
+
+  data.forEach((c,index)=>{
+    let li=document.createElement("li");
+
+    li.innerHTML = `
+      <span>${c}</span>
+      <button onclick="deleteComment(event,'${list.id}',${index})" style="background:#333;padding:4px 8px;border-radius:6px">x</button>
+    `;
+
+    list.appendChild(li);
+  });
+}
+function deleteComment(e,listId,index){
+  e.stopPropagation();
+
+  let key = "c-"+listId.replace("list-","");
+  let data = JSON.parse(localStorage.getItem(key)) || [];
+
+  data.splice(index,1);
+
+  localStorage.setItem(key,JSON.stringify(data));
+
+  let list = document.getElementById(listId);
+  render(list,data);
+}
+function openImage(e, src){
+  e.stopPropagation();
+
+  const popup = document.createElement("div");
+  popup.style.position = "fixed";
+  popup.style.top = "0";
+  popup.style.left = "0";
+  popup.style.width = "100%";
+  popup.style.height = "100%";
+  popup.style.background = "rgba(0,0,0,0.9)";
+  popup.style.display = "flex";
+  popup.style.justifyContent = "center";
+  popup.style.alignItems = "center";
+  popup.style.zIndex = "9999";
+
+  popup.innerHTML = `
+    <img src="${src}" style="max-width:90%;max-height:90%;border-radius:10px;">
+  `;
+
+  popup.onclick = () => popup.remove();
+  document.body.appendChild(popup);
+}
+function downloadImage(e, btn, src){
+  e.stopPropagation();
+
+  // download
+  const a = document.createElement("a");
+  a.href = src;
+  a.download = src.split("/").pop();
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // 🔥 trigger glow
+  const card = btn.closest(".card");
+
+  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+
+  card.classList.remove("active");
+  void card.offsetWidth;
+  card.classList.add("active");
+}
+
 </script>
+
+
+<script>
+const gameBox = document.getElementById("gameBox");
+const scoreText = document.getElementById("score");
+const startBtn = document.getElementById("startBtn");
+const gameOverScreen = document.getElementById("gameOverScreen");
+const finalScore = document.getElementById("finalScore");
+
+let score = 0;
+let ball;
+let gameRunning = false;
+let moveTimeout;
+
+// START GAME
+function startGame(){
+  score = 0;
+  gameRunning = true;
+
+  scoreText.innerText = "Score: 0";
+
+  startBtn.style.display = "none";
+  gameOverScreen.style.display = "none";
+  gameBox.style.display = "block";
+
+  spawnBall();
+}
+
+// SPAWN BALL + TIMER
+function spawnBall(){
+  if(!gameRunning) return;
+
+  // remove old ball
+  if(ball) ball.remove();
+
+  // clear previous timer
+  clearTimeout(moveTimeout);
+
+  ball = document.createElement("div");
+  ball.classList.add("ball");
+
+  const x = Math.random() * (gameBox.clientWidth - 40);
+  const y = Math.random() * (gameBox.clientHeight - 40);
+
+  ball.style.left = x + "px";
+  ball.style.top = y + "px";
+
+  // CLICK ON BALL
+  ball.onclick = (e) => {
+    e.stopPropagation();
+
+    score++;
+    scoreText.innerText = "Score: " + score;
+
+    // 🔥 instant move on correct click
+    spawnBall();
+  };
+
+  gameBox.appendChild(ball);
+
+  // ⏳ only move if NOT clicked within 0.5s
+  moveTimeout = setTimeout(() => {
+    spawnBall();
+  }, 590);
+}
+
+// GAME OVER
+function endGame(){
+  gameRunning = false;
+
+  clearTimeout(moveTimeout);
+
+  if(ball) ball.remove();
+
+  gameBox.style.display = "none";
+  gameOverScreen.style.display = "block";
+  startBtn.style.display = "inline-block";
+
+  finalScore.innerText = "Your Score: " + score;
+}
+
+// MISCLICK
+gameBox.onclick = () => {
+  if(gameRunning) endGame();
+};
+
+// START BUTTON
+startBtn.onclick = startGame;
+</script>
+
 </body>
 </html>
