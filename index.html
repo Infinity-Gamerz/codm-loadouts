@@ -6,8 +6,7 @@
 <title>Infinity Gamerz</title>
 
 <style>
-*{
-  margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#0f0f0f;color:#fff}
 
 header{
@@ -293,25 +292,320 @@ button.liked{
 }
 
 
-.ball{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  position:absolute;
-  background:red;
-  box-shadow:0 0 15px red, 0 0 30px red;
+#randomBtn{
+  padding:14px 28px;
+  border:none;
+  border-radius:12px;
+  background:#ff0033;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
   cursor:pointer;
-  animation:pulse 0.5s infinite alternate;
+  transition:0.3s;
 }
 
-@keyframes pulse{
-  from{ transform:scale(1); }
-  to{ transform:scale(1.15); }
+#randomBtn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 20px #ff0033;
+}
+
+#randomCard{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+}
+
+.random-loadout{
+  width:300px;
+  background:#111;
+  border-radius:15px;
+  overflow:hidden;
+  border:1px solid #222;
+  animation:popIn 0.5s ease;
+  box-shadow:0 0 20px rgba(255,0,51,0.4);
+}
+
+.random-loadout img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.random-info{
+  padding:15px;
+}
+
+.random-info h3{
+  color:#ff0033;
+  margin-bottom:10px;
+}
+
+.random-info p{
+  color:#bbb;
+  margin:6px 0;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(0.7);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+#loader{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+#loader h1{
+  color:#ff0033;
+  margin-bottom:20px;
+  font-size:38px;
+  text-shadow:0 0 20px #ff0033;
+}
+
+#loader p{
+  color:#aaa;
+  margin-top:15px;
+}
+
+#loadingBar{
+  width:260px;
+  height:12px;
+  background:#222;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+#loadingFill{
+  width:0%;
+  height:100%;
+  background:#ff0033;
+  box-shadow:0 0 15px #ff0033;
+  animation:load 3s forwards;
+}
+
+@keyframes load{
+  from{
+    width:0%;
+  }
+
+  to{
+    width:100%;
+  }
+}
+/* 🔵 BLUE THEME */
+body.blue-theme{
+  background:linear-gradient(to bottom,#021421,#06263d,#021421);
+  color:#fff;
+}
+
+body.blue-theme header,
+body.blue-theme .footer,
+body.blue-theme .hero{
+  background:#031826;
+}
+
+body.blue-theme .card,
+body.blue-theme #gameBox,
+body.blue-theme .random-loadout{
+  background:#0b2235;
+  border:1px solid #009dff;
+}
+
+body.blue-theme h1,
+body.blue-theme h2,
+body.blue-theme h3,
+body.blue-theme header h1{
+  color:#00aeff;
+}
+
+body.blue-theme .btn,
+body.blue-theme button{
+  background:#009dff;
+}
+
+body.blue-theme .card:hover{
+  box-shadow:0 0 20px #009dff;
+}
+
+
+/* 🟣 PURPLE THEME */
+body.purple-theme{
+  background:linear-gradient(to bottom,#160022,#2b0a3d,#160022);
+  color:#fff;
+}
+
+body.purple-theme header,
+body.purple-theme .footer,
+body.purple-theme .hero{
+  background:#1d0629;
+}
+
+body.purple-theme .card,
+body.purple-theme #gameBox,
+body.purple-theme .random-loadout{
+  background:#2a1038;
+  border:1px solid #c300ff;
+}
+
+body.purple-theme h1,
+body.purple-theme h2,
+body.purple-theme h3,
+body.purple-theme header h1{
+  color:#d000ff;
+}
+
+body.purple-theme .btn,
+body.purple-theme button{
+  background:#bb00ff;
+}
+
+body.purple-theme .card:hover{
+  box-shadow:0 0 20px #bb00ff;
+}
+/* BUILD BATTLE */
+
+.battle-section{
+  padding:20px 10px;
+  text-align:center;
+}
+
+.battle-title{
+  font-size:32px;
+  margin-bottom:40px;
+  color:#fff;
+  text-shadow:0 0 20px red;
+}
+
+.battle-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.battle-card{
+  background:#111;
+  border:2px solid #333;
+  border-radius:20px;
+  padding:20px;
+  width:300px;
+  transition:0.3s;
+  box-shadow:0 0 20px rgba(255,255,255,0.1);
+}
+
+.battle-card img{
+  width:100%;
+  border-radius:15px;
+}
+
+.battle-card h3{
+  margin:15px 0;
+  font-size:28px;
+}
+
+.left-card{
+  border-color:red;
+}
+
+.right-card{
+  border-color:cyan;
+}
+
+.left-card.winner{
+  box-shadow:0 0 40px red;
+  transform:scale(1.05);
+}
+
+.right-card.winner{
+  box-shadow:0 0 40px cyan;
+  transform:scale(1.05);
+}
+
+.vs-text{
+  font-size:30px;
+  font-weight:bold;
+  color:white;
+  text-shadow:0 0 20px white;
+}
+
+.progress-box{
+  width:100%;
+  height:10px;
+  background:#222;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.progress-fill{
+  height:100%;
+  width:50%;
+  transition:0.5s;
+}
+
+.left-fill{
+  background:red;
+}
+
+.right-fill{
+  background:cyan;
+}
+
+.battle-card button{
+  margin-top:15px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
+  color:white;
+  transition:0.3s;
+}
+
+.left-card button{
+  background:red;
+}
+
+.right-card button{
+  background:cyan;
+  color:black;
+}
+
+.battle-card button:hover{
+  transform:scale(1.1);
 }
 </style>
 </head>
 
 <body>
+
+<div id="loader">
+
+  <h1>Infinity Gamerz 🔥</h1>
+
+  <div id="loadingBar">
+    <div id="loadingFill"></div>
+  </div>
+
+  <p>Connecting to CODM servers...</p>
+
+</div>
 
 <header>
 <h1>Infinity Gamerz 🔥</h1>
@@ -321,7 +615,6 @@ button.liked{
 <a href="#about">About</a>
 </nav>
 </header>
-
 <section class="hero">
 <h2>Best COD Mobile Loadouts 🔫</h2>
 <p>Sniper builds • No recoil setups • Aggressive gameplay</p>
@@ -344,6 +637,46 @@ button.liked{
   PRO in quick-scoping
 </h1>
 
+<section class="battle-section">
+
+<h2 class="battle-title">⚔ BUILD BATTLE ⚔</h2>
+
+<div class="battle-container">
+
+  <!-- LEFT CARD -->
+  <div class="battle-card left-card" id="leftCard">
+    <img src="images/dl-q33.jpg" alt="">
+    <h3>DL-Q33</h3>
+
+    <div class="progress-box">
+      <div class="progress-fill left-fill" id="leftFill"></div>
+    </div>
+
+    <p id="leftPercent">50%</p>
+
+    <button onclick="voteLeft()">🔥 Vote</button>
+  </div>
+
+  <!-- VS -->
+  <div class="vs-text">VS</div>
+
+  <!-- RIGHT CARD -->
+  <div class="battle-card right-card" id="rightCard">
+    <img src="images/lw3-tundra.jpg" alt="">
+    <h3>LW3-TUNDRA</h3>
+
+    <div class="progress-box">
+      <div class="progress-fill right-fill" id="rightFill"></div>
+    </div>
+
+    <p id="rightPercent">50%</p>
+
+    <button onclick="voteRight()">⚡ Vote</button>
+  </div>
+
+</div>
+
+</section>
 <iframe width="100%" height="200"
   src="https://www.youtube.com/embed/0IyXgkjtXpY"
   frameborder="0"
@@ -353,9 +686,36 @@ button.liked{
 <section id="loadouts" class="section">
 <h3>🔥 Featured Loadouts</h3>
 <input type="text" id="searchBar" placeholder="Search loadouts...">
+
+<div id="filters" style="text-align:center;margin-bottom:20px;">
+  
+  <button onclick="filterCategory('all')">All</button>
+
+<button onclick="filterCategory('god-build')">
+    GOD-LIKE BUILDS
+  </button>
+
+  <button onclick="filterCategory('sniper')">
+    Snipers
+  </button>
+
+  <button onclick="filterCategory('ragebaiter')">
+    Rage-baiter
+  </button>
+
+  <button onclick="filterCategory('lmg')">
+    LMG
+  </button>
+
+  <button onclick="filterCategory('no-recoil')">
+    No Recoil
+  </button>
+
+</div>
 <div id="loadouts-container" class="grid"></div>
 
-<div id="pagination" style="text-align:center; margin-top:20px;"></div>
+<div id="pagination" style="text-align:center; margin-top:20px;">
+</div>
 
 </section>
 <section id="aimTrainer">
@@ -363,7 +723,7 @@ button.liked{
   TEST YOUR REACTION TIME</h2>
 
   <div id="score">Score: 0</div>
-
+<div id="highScore">High Score: 0</div>
   <button id="startBtn">Start Game</button>
 
   <div id="gameBox"></div>
@@ -376,81 +736,131 @@ button.liked{
   </div>
 </section>
 
-<section id="about" class="section">
-<h3>👤 About</h3>
-<p style="text-align:center;color:#aaa">
-Infinity Gamerz — CODM Loadouts & Gameplay
-</p>
+<!-- RANDOM LOADOUT GENERATOR -->
+<section id="randomLoadout" class="section">
+
+  <h2 style="text-align:center;margin-bottom:20px;">
+    🎲 Random Loadout Generator
+  </h2>
+
+  <div style="text-align:center;">
+    <button id="randomBtn">
+      Generate Random Loadout
+    </button>
+  </div>
+
+  <div id="randomCard"></div>
+
 </section>
 
+<section id="about" class="section">
 <div class="footer">
 <p>© 2026 Infinity Gamerz 👑</p>
 </div>
+</section>
 
 <script>
 const loadouts = [
 {
  name:"DL Q33 👑",
  desc:"Fast ADS one-shot build",
+ category:["sniper","god-build"],
  attach:"MIP Light | OWC Laser | Fast Switch | Extended Mag A",
  img:"images/dl-q33.jpg"
 },
 {
  name:"LOCUS 💯",
  desc:"Fast ADS one-shot build",
+ category:["sniper"],
  attach:"OWC Laser | Skeleton Stock | Stippled Grip Tape",
  img:"images/locus.jpg"
 },
 {
  name:"Arctic .50 🔥",
  desc:"Fast ADS sniper",
+ category:["sniper"],
  attach:"Assassin Short | Skeleton Stock | Fast Switch",
  img:"images/arctic50.jpg"
 },
 {
  name:"LW3-Tundra",
  desc:"Fastest ADS build",
- category:"sniper",
+ category:["sniper"],
  attach:"28.2\" Tiger Team | Bandit Steady Stock | Serpent Wrap | 7 RND Reload | Fast Switch",
  img:"images/lw3-tundra.jpg"
 },
 {
  name:"Koshka",
  desc:"Godlike build",
- category:"sniper",
+ category:["sniper"],
  attach:"MIP Light Barrel | OWC Laser Tactical | Mobility Stock | Stippled Grip Tape | Fast Switch",
  img:"images/koshka.jpg"
 },
 {
  name:"3-Line Rifle",
  desc:"One shot kill for beginners",
- category:"sniper",
+ category:["sniper"],
  attach:".30-06 Mag | SMLE Grip | 270MM VOZ | Empress Marksman | Fast Switch",
  img:"images/3-line.jpg"
 },
 {
  name:"HDR",
  desc:"Insta Kill",
- category:"sniper",
+ category:["sniper"],
  attach:"4x Scope | FTAC Stalker | 7 Rnd Mag | OWC Laser Tactical | Fast Switch",
  img:"images/hdr.jpg"
 },
 {
  name:"ZRG-20MM",
  desc:"Recomended for higher sensitivity",
- category:"sniper",
+ category:["sniper"],
  attach:"MIP Light Barrel (Short) | YKM Combat Stock | Stippled Grip Tape | OWC Laser Tactical | Fast Switch",
  img:"images/zrg20mm.jpg"
 },
 {
  name:"KILO 141",
  desc:"Best long-short (no recoil built) ",
- category:"sniper",
+ category:["ar","no-recoil"],
  attach:"YKM Integral Suppressor Light | Tactical Foregrip A | Extended Mag A | OWC Skeleton Stock | Granulated Grip Tape",
  img:"images/kilo141.jpg"
 },
+{
+ name:"MG 24 (rage-baiter)",
+ desc:"Best close-quater (0 recoil built) ",
+ category:["lmg","no-recoil","ragebaiter"],
+ attach:" Krausnick S91 Padded | Krausnick 355mm Rapid | 6.5 Arisaka 125 Rnd Drums | Nyder Model 47 | Granular Grip Tape",
+ img:"images/mg24-ragebaiter.jpg"
+},
 ];
+const randomBtn = document.getElementById("randomBtn");
+const randomCard = document.getElementById("randomCard");
 
+randomBtn.addEventListener("click", ()=>{
+
+  const random =
+  loadouts[Math.floor(Math.random()*loadouts.length)];
+
+  randomCard.innerHTML = `
+  
+    <div class="random-loadout">
+
+      <img src="${random.img}">
+
+      <div class="random-info">
+
+        <h3>${random.name}</h3>
+
+        <p>${random.desc}</p>
+
+        <p><b>Attachments:</b></p>
+
+        <p>${random.attach}</p>
+
+      </div>
+
+    </div>
+  `;
+});
 const container = document.getElementById("loadouts-container");
 let cards = [];
 
@@ -520,19 +930,38 @@ function renderPage(page){
     // restore data
     loadSaved(id);
     createStars(id);
+let likeSpan = document.getElementById("like-"+id);
+let btn = card.querySelector(".like-btn");
 
-    let savedLikes = parseInt(localStorage.getItem("likes-"+id)) || 0;
-    let likeSpan = document.getElementById("like-"+id);
-    let btn = card.querySelector(".like-btn");
+// FIREBASE realtime likes
+const likeRef = window._doc(window._db,"likes",id);
 
-    likeSpan.innerText = savedLikes;
+window._onSnapshot(likeRef,(snap)=>{
 
-    if(savedLikes > 0){
-      btn.classList.add("liked");
-      btn.innerText = "❤️ Liked";
-    } else {
-      btn.innerText = "👍 Like";
-    }
+  if(snap.exists()){
+
+    likeSpan.innerText = snap.data().count;
+
+  } else {
+
+    likeSpan.innerText = 0;
+
+  }
+
+});
+
+// already liked from this device
+if(localStorage.getItem("liked-"+id)){
+
+  btn.classList.add("liked");
+  btn.innerText = "❤️ Liked";
+
+} else {
+
+  btn.innerText = "👍 Like";
+
+}
+    
   });
 
   renderPagination();
@@ -558,9 +987,78 @@ function renderPagination(){
   }
 }
 
-// 🚀 START
-renderPage(1);
+// 🚀 START — called by Firebase module once db is ready
+// renderPage(1) is called from the module script below
 
+function filterCategory(category){
+
+  pagination.style.display = "none";
+  container.innerHTML = "";
+
+  let filtered;
+
+  if(category === "all"){
+    filtered = loadouts;
+  } else {
+    filtered = loadouts.filter(l =>
+      l.category &&
+      l.category.includes(category)
+    );
+  }
+
+  filtered.forEach(l => {
+
+    const id = l.name.replace(/\s+/g,'').toLowerCase();
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${l.img}" onclick="openImage(event,'${l.img}')">
+      <h4>${l.name}</h4>
+      <p>${l.desc}</p>
+
+      <div class="rating" id="rating-${id}" onclick="event.stopPropagation()"></div>
+      <p id="rate-text-${id}" style="font-size:12px;color:#aaa"></p>
+
+      <div class="comment-box" onclick="event.stopPropagation()">
+        <div class="comment-input">
+          <input placeholder="Write a comment..." id="input-${id}">
+          <button onclick="addComment(event,'${id}')">➤</button>
+        </div>
+        <ul id="list-${id}" class="comment-list"></ul>
+      </div>
+
+      <div>
+        <button class="like-btn" onclick="like(event,this,'${id}')">👍 Like</button>
+        <span id="like-${id}">0</span>
+      </div>
+
+      <div>
+        <button class="download-btn" onclick="downloadImage(event,this,'${l.img}')">
+          ⬇ Download
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+
+    loadSaved(id);
+    createStars(id);
+
+    let savedLikes = parseInt(localStorage.getItem("likes-"+id)) || 0;
+    let likeSpan = document.getElementById("like-"+id);
+    let btn = card.querySelector(".like-btn");
+
+    likeSpan.innerText = savedLikes;
+
+    if(savedLikes > 0){
+      btn.classList.add("liked");
+      btn.innerText = "❤️ Liked";
+    }
+  });
+
+}
 
 // SEARCH
 document.getElementById("searchBar").addEventListener("input", e => {
@@ -628,58 +1126,42 @@ document.getElementById("searchBar").addEventListener("input", e => {
     // restore features
     loadSaved(id);
     createStars(id);
+    
+let likeSpan = document.getElementById("like-"+id);
+let btn = card.querySelector(".like-btn");
 
-    let savedLikes = parseInt(localStorage.getItem("likes-"+id)) || 0;
-    let likeSpan = document.getElementById("like-"+id);
-    let btn = card.querySelector(".like-btn");
+// realtime global likes
+const likeRef = window._doc(window._db,"likes",id);
 
-    likeSpan.innerText = savedLikes;
+window._onSnapshot(likeRef,(snap)=>{
 
-    if(savedLikes > 0){
-      btn.classList.add("liked");
-      btn.innerText = "❤️ Liked";
-    }
-  });
+  if(snap.exists()){
+
+    likeSpan.innerText = snap.data().count;
+
+  } else {
+
+    likeSpan.innerText = 0;
+
+  }
 
 });
 
-function like(e, btn, id){
-  e.stopPropagation();
+// already liked from this device
+if(localStorage.getItem("liked-"+id)){
 
-  let countEl = document.getElementById("like-"+id);
-  let likes = parseInt(localStorage.getItem("likes-"+id)) || 0;
+  btn.classList.add("liked");
+  btn.innerText = "❤️ Liked";
 
-  let isLiked = btn.classList.contains("liked");
-
-  if(isLiked){
-    // ❌ UNLIKE
-    likes = Math.max(0, likes - 1);
-    btn.classList.remove("liked");
-    btn.innerText = "👍 Like";
-  } else {
-    // ❤️ LIKE
-    likes++;
-    btn.classList.add("liked");
-    btn.innerText = "❤️ Liked";
-  }
-
-  localStorage.setItem("likes-"+id, likes);
-  countEl.innerText = likes;
-
-  // 🔥 animation
-  countEl.classList.remove("like-pop");
-  void countEl.offsetWidth;
-  countEl.classList.add("like-pop");
-
-  // 🔥 card glow
-  const card = btn.closest(".card");
-
-  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
-
-  card.classList.remove("active");
-  void card.offsetWidth;
-  card.classList.add("active");
 }
+
+  }); // closes filtered.forEach()
+
+}); // closes search event listener
+
+
+/* RATING */
+
 
 /* RATING */
 function createStars(id){
@@ -823,6 +1305,9 @@ let score = 0;
 let ball;
 let gameRunning = false;
 let moveTimeout;
+let highScore = localStorage.getItem("highScore") || 0;
+document.getElementById("highScore").innerText =
+"🏆 High Score: " + highScore;
 
 // START GAME
 function startGame(){
@@ -889,6 +1374,15 @@ function endGame(){
   startBtn.style.display = "inline-block";
 
   finalScore.innerText = "Your Score: " + score;
+  if(score > highScore){
+
+  highScore = score;
+
+  localStorage.setItem("highScore", highScore);
+
+  document.getElementById("highScore").innerText =
+  "🏆 High Score: " + highScore;
+}
 }
 
 // MISCLICK
@@ -898,7 +1392,188 @@ gameBox.onclick = () => {
 
 // START BUTTON
 startBtn.onclick = startGame;
+
+window.addEventListener("load", ()=>{
+
+  setTimeout(()=>{
+
+    document.getElementById("loader").style.opacity = "0";
+
+    setTimeout(()=>{
+      document.getElementById("loader").style.display = "none";
+    },300);
+
+  },300);
+
+});
+
 </script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  increment,
+  onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBNkQwhjZrbh6LaXa6KuJbRDW3IllDVzOA",
+  authDomain: "infinity-gamerz.firebaseapp.com",
+  projectId: "infinity-gamerz",
+  storageBucket: "infinity-gamerz.firebasestorage.app",
+  messagingSenderId: "434402209111",
+  appId: "1:434402209111:web:603b379d2943d6397e6212"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+// Expose Firebase to regular (non-module) scripts
+window._db = db;
+window._doc = doc;
+window._onSnapshot = onSnapshot;
+
+// Now that Firebase is ready, render the first page of loadout cards
+renderPage(1);
+
+const battleRef = doc(db, "battleVotes", "mainBattle");
+
+// create database document if missing
+async function createBattle(){
+
+  const snap = await getDoc(battleRef);
+
+  if(!snap.exists()){
+
+    await setDoc(battleRef,{
+      leftVotes:0,
+      rightVotes:0
+    });
+
+  }
+
+}
+
+createBattle();
+
+// LIVE realtime updates
+onSnapshot(battleRef,(docSnap)=>{
+
+  let data = docSnap.data();
+
+  let leftVotes = data.leftVotes;
+  let rightVotes = data.rightVotes;
+
+  let total = leftVotes + rightVotes;
+
+  if(total === 0){
+
+    document.getElementById("leftPercent").innerText = "0%";
+    document.getElementById("rightPercent").innerText = "0%";
+
+    return;
+  }
+
+  let leftPercent = Math.round((leftVotes/total)*100);
+  let rightPercent = Math.round((rightVotes/total)*100);
+
+  document.getElementById("leftPercent").innerText = leftPercent + "%";
+  document.getElementById("rightPercent").innerText = rightPercent + "%";
+
+  document.getElementById("leftFill").style.width = leftPercent + "%";
+  document.getElementById("rightFill").style.width = rightPercent + "%";
+
+});
+
+// vote left
+window.voteLeft = async function(){
+
+  if(localStorage.getItem("battleVoted")){
+    return;
+  }
+
+  await updateDoc(battleRef,{
+    leftVotes: increment(1)
+  });
+
+  localStorage.setItem("battleVoted","yes");
+
+  disableButtons();
+
+}
+
+// vote right
+window.voteRight = async function(){
+
+  if(localStorage.getItem("battleVoted")){
+    return;
+  }
+
+  await updateDoc(battleRef,{
+    rightVotes: increment(1)
+  });
+
+  localStorage.setItem("battleVoted","yes");
+
+  disableButtons();
+
+}
+
+window.disableButtons = function(){
+
+  let buttons = document.querySelectorAll(".battle-card button");
+
+  buttons.forEach(btn=>{
+
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
+    btn.innerText = "Voted";
+
+  });
+
+}
+
+if(localStorage.getItem("battleVoted")){
+  disableButtons();
+}
+
+// expose like() globally from module scope so cards can call it
+window.like = async function(e, btn, id){
+  e.stopPropagation();
+
+  if(localStorage.getItem("liked-"+id)){
+    return;
+  }
+
+  const likeRef = doc(db,"likes",id);
+
+  const snap = await getDoc(likeRef);
+
+  if(!snap.exists()){
+    await setDoc(likeRef,{ count:0 });
+  }
+
+  await updateDoc(likeRef,{
+    count: increment(1)
+  });
+
+  localStorage.setItem("liked-"+id,"yes");
+
+  btn.classList.add("liked");
+  btn.innerText = "❤️ Liked";
+}
+
+</script>
+
 
 </body>
 </html>
