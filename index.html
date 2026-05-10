@@ -246,50 +246,6 @@ button.liked{
   text-align:center;
   padding:60px 20px;
 }
-#gameBox{
-  width:90%;
-  max-width:350px;
-  aspect-ratio:1/1; /* keeps it square */
-  margin:20px auto;
-  background:#1a1a1a;
-  border:2px solid #333;
-  position:relative;
-  overflow:hidden;
-  border-radius:10px;
-  display:none;
-}
-
-
-#startBtn{
-  padding:10px 20px;
-  font-size:16px;
-  background:#ff3c3c;
-  color:white;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-#gameOverScreen{
-  display:none;
-  margin-top:20px;
-}
-
-.ball{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  position:absolute;
-  background:red;
-  box-shadow:0 0 15px red, 0 0 30px red;
-  cursor:pointer;
-  animation:pulse 0.5s infinite alternate;
-}
-
-@keyframes pulse{
-  from{ transform:scale(1); }
-  to{ transform:scale(1.15); }
-}
 
 
 #randomBtn{
@@ -718,23 +674,22 @@ body.purple-theme .card:hover{
 </div>
 
 </section>
-<section id="aimTrainer">
-  <h2>‎ ‎ ‎ ‎ ‎ ‎ ‎ 🎯 Mini Aim Trainer‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎        ‎ 
-  TEST YOUR REACTION TIME</h2>
+<div style="text-align:center; margin-top:20px;">
+  <a href="aim-trainer.html" style="
+    display:inline-block;
+    padding:14px 28px;
+    background:#ff0033;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+    border-radius:10px;
+    box-shadow:0 0 15px #ff0033;
+    font-family:Arial;
+  ">
+    🎯 AIM TRAINER
+  </a>
+</div>
 
-  <div id="score">Score: 0</div>
-<div id="highScore">High Score: 0</div>
-  <button id="startBtn">Start Game</button>
-
-  <div id="gameBox"></div>
-
-  <!-- Game Over Screen -->
-  <div id="gameOverScreen">
-    <h2>Game Over</h2>
-    <p id="finalScore"></p>
-    <button onclick="startGame()">Play Again</button>
-  </div>
-</section>
 
 <!-- RANDOM LOADOUT GENERATOR -->
 <section id="randomLoadout" class="section">
@@ -1295,103 +1250,7 @@ function downloadImage(e, btn, src){
 
 
 <script>
-const gameBox = document.getElementById("gameBox");
-const scoreText = document.getElementById("score");
-const startBtn = document.getElementById("startBtn");
-const gameOverScreen = document.getElementById("gameOverScreen");
-const finalScore = document.getElementById("finalScore");
 
-let score = 0;
-let ball;
-let gameRunning = false;
-let moveTimeout;
-let highScore = localStorage.getItem("highScore") || 0;
-document.getElementById("highScore").innerText =
-"🏆 High Score: " + highScore;
-
-// START GAME
-function startGame(){
-  score = 0;
-  gameRunning = true;
-
-  scoreText.innerText = "Score: 0";
-
-  startBtn.style.display = "none";
-  gameOverScreen.style.display = "none";
-  gameBox.style.display = "block";
-
-  spawnBall();
-}
-
-// SPAWN BALL + TIMER
-function spawnBall(){
-  if(!gameRunning) return;
-
-  // remove old ball
-  if(ball) ball.remove();
-
-  // clear previous timer
-  clearTimeout(moveTimeout);
-
-  ball = document.createElement("div");
-  ball.classList.add("ball");
-
-  const x = Math.random() * (gameBox.clientWidth - 40);
-  const y = Math.random() * (gameBox.clientHeight - 40);
-
-  ball.style.left = x + "px";
-  ball.style.top = y + "px";
-
-  // CLICK ON BALL
-  ball.onclick = (e) => {
-    e.stopPropagation();
-
-    score++;
-    scoreText.innerText = "Score: " + score;
-
-    // 🔥 instant move on correct click
-    spawnBall();
-  };
-
-  gameBox.appendChild(ball);
-
-  // ⏳ only move if NOT clicked within 0.5s
-  moveTimeout = setTimeout(() => {
-    spawnBall();
-  }, 590);
-}
-
-// GAME OVER
-function endGame(){
-  gameRunning = false;
-
-  clearTimeout(moveTimeout);
-
-  if(ball) ball.remove();
-
-  gameBox.style.display = "none";
-  gameOverScreen.style.display = "block";
-  startBtn.style.display = "inline-block";
-
-  finalScore.innerText = "Your Score: " + score;
-  if(score > highScore){
-
-  highScore = score;
-
-  localStorage.setItem("highScore", highScore);
-
-  document.getElementById("highScore").innerText =
-  "🏆 High Score: " + highScore;
-}
-}
-
-// MISCLICK
-gameBox.onclick = () => {
-  if(gameRunning) endGame();
-};
-
-// START BUTTON
-startBtn.onclick = startGame;
 
 window.addEventListener("load", ()=>{
 
